@@ -1,0 +1,135 @@
+/**
+ * Editor Styles
+ * Styles that apply to the Gutenberg editor to match frontend appearance
+ * 
+ * @package DThree_Gutenberg
+ */
+
+/* Import Bootstrap Icons */
+@import url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css');
+
+/* Editor Wrapper */
+.editor-styles-wrapper {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #212529;
+}
+
+/* Headings */
+.editor-styles-wrapper h1,
+.editor-styles-wrapper .wp-block-heading[style*="font-size: 2.5rem"] {
+    font-size: 2.5rem;
+    line-height: 1.2;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+.editor-styles-wrapper h2,
+.editor-styles-wrapper .wp-block-heading[style*="font-size: 2rem"] {
+    font-size: 2rem;
+    line-height: 1.3;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.editor-styles-wrapper h3 {
+    font-size: 1.75rem;
+    line-height: 1.4;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+/* Paragraphs */
+.editor-styles-wrapper p {
+    margin-bottom: 1rem;
+}
+
+/* Buttons */
+.editor-styles-wrapper .wp-block-button__link {
+    background-color: #0d6efd;
+    color: #ffffff;
+    border-radius: 0.25rem;
+    padding: 0.5rem 1rem;
+    border: none;
+}
+
+.editor-styles-wrapper .wp-block-button.is-style-bootstrap-outline .wp-block-button__link {
+    background-color: transparent;
+    color: #0d6efd;
+    border: 1px solid #0d6efd;
+}
+
+/* Images */
+.editor-styles-wrapper .wp-block-image img {
+    height: auto;
+    max-width: 100%;
+}
+
+.editor-styles-wrapper .wp-block-image.is-style-rounded img {
+    border-radius: 0.5rem;
+}
+
+.editor-styles-wrapper .wp-block-image.is-style-shadow img {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Quotes */
+.editor-styles-wrapper .wp-block-quote {
+    border-left: 4px solid #0d6efd;
+    padding-left: 1.5rem;
+    font-style: italic;
+}
+
+.editor-styles-wrapper .wp-block-quote.is-style-bootstrap-blockquote {
+    background-color: #f8f9fa;
+    padding: 1rem 1.5rem;
+    border-radius: 0.25rem;
+}
+
+/* Lists */
+.editor-styles-wrapper ul,
+.editor-styles-wrapper ol {
+    padding-left: 2rem;
+    margin-bottom: 1rem;
+}
+
+/* Tables */
+.editor-styles-wrapper .wp-block-table {
+    margin-bottom: 1.5rem;
+}
+
+.editor-styles-wrapper .wp-block-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.editor-styles-wrapper .wp-block-table th,
+.editor-styles-wrapper .wp-block-table td {
+    padding: 0.75rem;
+    border: 1px solid #dee2e6;
+}
+
+.editor-styles-wrapper .wp-block-table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+}
+
+/* Custom Blocks Editor Appearance */
+.editor-styles-wrapper .dthree-hero-section,
+.editor-styles-wrapper .dthree-features-section,
+.editor-styles-wrapper .dthree-cta-section,
+.editor-styles-wrapper .dthree-team-section,
+.editor-styles-wrapper .dthree-testimonials-section,
+.editor-styles-wrapper .dthree-contact-form-section {
+    padding: 3rem 0;
+}
+
+/* Align Wide and Full */
+.editor-styles-wrapper .alignwide {
+    max-width: 1200px;
+}
+
+.editor-styles-wrapper .alignfull {
+    max-width: 100%;
+}

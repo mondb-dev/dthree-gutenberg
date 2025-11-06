@@ -1,0 +1,166 @@
+/*
+Theme Name: DThree Gutenberg
+Theme URI: https://github.com/mondb-dev/dthree-gutenberg
+Author: DThree Dev Team
+Author URI: https://github.com/mondb-dev
+Description: A modern, highly customizable WordPress theme built on Gutenberg with reusable blocks, Bootstrap 5, and best practices for UI/UX, security, and SEO. Features custom blocks for common website components including hero sections, features, testimonials, and more.
+Version: 1.0.0
+Requires at least: 6.0
+Tested up to: 6.4
+Requires PHP: 7.4
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: dthree-gutenberg
+Tags: block-patterns, block-styles, custom-menu, editor-style, full-site-editing, one-column, two-columns, featured-images, footer-widgets, custom-header, custom-background, custom-colors, theme-options, threaded-comments, translation-ready, accessibility-ready, blog, portfolio, business
+
+DThree Gutenberg is a modern WordPress theme that extends Gutenberg functionality with custom, reusable blocks.
+*/
+
+/* 
+ * Theme base styles - Most styling is handled through theme.json and Bootstrap
+ * Additional custom styles can be added here
+ */
+
+:root {
+    --dthree-primary: #0d6efd;
+    --dthree-secondary: #6c757d;
+    --dthree-success: #198754;
+    --dthree-danger: #dc3545;
+    --dthree-warning: #ffc107;
+    --dthree-info: #0dcaf0;
+    --dthree-light: #f8f9fa;
+    --dthree-dark: #212529;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--dthree-dark);
+}
+
+/* Accessibility improvements */
+.screen-reader-text {
+    clip: rect(1px, 1px, 1px, 1px);
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    word-wrap: normal !important;
+}
+
+.screen-reader-text:focus {
+    background-color: #f1f1f1;
+    border-radius: 3px;
+    box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+    clip: auto !important;
+    color: #21759b;
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    height: auto;
+    left: 5px;
+    line-height: normal;
+    padding: 15px 23px 14px;
+    text-decoration: none;
+    top: 5px;
+    width: auto;
+    z-index: 100000;
+}
+
+/* Skip to content link */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--dthree-primary);
+    color: white;
+    padding: 8px;
+    text-decoration: none;
+    z-index: 100;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+/* Gutenberg alignment support */
+.alignfull {
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    max-width: 100vw;
+    width: 100vw;
+}
+
+.alignwide {
+    margin-left: calc(25% - 25vw);
+    margin-right: calc(25% - 25vw);
+    max-width: 1200px;
+    width: auto;
+}
+
+.aligncenter {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* WordPress Core styles */
+.wp-block-image img {
+    height: auto;
+    max-width: 100%;
+}
+
+.wp-caption {
+    max-width: 100%;
+}
+
+.wp-caption-text {
+    text-align: center;
+    font-size: 0.875rem;
+    color: var(--dthree-secondary);
+    margin-top: 0.5rem;
+}
+
+/* Sticky post indicator */
+.sticky {
+    position: relative;
+}
+
+/* Gallery styles */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.gallery-item {
+    margin: 0;
+}
+
+/* Comments */
+.comment-list {
+    list-style: none;
+    padding: 0;
+}
+
+.comment-body {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background: var(--dthree-light);
+    border-radius: 0.25rem;
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 2rem 0;
+}
+
+/* Print styles */
+@media print {
+    .no-print {
+        display: none !important;
+    }
+}

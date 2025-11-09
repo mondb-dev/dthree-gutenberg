@@ -138,6 +138,14 @@ function dthree_enqueue_scripts() {
         DTHREE_VERSION
     );
     
+    // Default styling (Dthree Digital aesthetic)
+    wp_enqueue_style(
+        'dthree-defaults',
+        DTHREE_THEME_URI . '/assets/css/dthree-defaults.css',
+        array( 'dthree-style' ),
+        DTHREE_VERSION
+    );
+    
     // Print stylesheet
     wp_enqueue_style(
         'dthree-print',
@@ -444,3 +452,18 @@ require_once DTHREE_THEME_DIR . '/inc/seo.php';
  * Include AI-friendly features
  */
 require_once DTHREE_THEME_DIR . '/inc/ai-features.php';
+
+/**
+ * Include theme defaults and setup
+ */
+require_once DTHREE_THEME_DIR . '/inc/theme-defaults.php';
+
+/**
+ * Include import/export functionality
+ */
+require_once DTHREE_THEME_DIR . '/inc/import-export.php';
+
+/**
+ * Include performance optimization
+ */
+require_once DTHREE_THEME_DIR . '/inc/performance.php';

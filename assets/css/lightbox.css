@@ -1,0 +1,471 @@
+/**
+ * Lightbox Styles
+ * Modern, accessible lightbox/modal for images and galleries
+ *
+ * @package DThree_Gutenberg
+ */
+
+/* ==========================================================================
+   Lightbox Base Styles
+   ========================================================================== */
+
+.dthree-lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.dthree-lightbox.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+}
+
+.dthree-lightbox-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dthree-lightbox-image {
+    max-width: 100%;
+    max-height: 90vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+    animation: lightboxZoomIn 0.3s ease;
+}
+
+@keyframes lightboxZoomIn {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* ==========================================================================
+   Lightbox Controls
+   ========================================================================== */
+
+.dthree-lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 10001;
+}
+
+.dthree-lightbox-close:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.8);
+    transform: rotate(90deg);
+}
+
+.dthree-lightbox-close:focus {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+}
+
+.dthree-lightbox-prev,
+.dthree-lightbox-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    color: #fff;
+    font-size: 28px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 10001;
+}
+
+.dthree-lightbox-prev {
+    left: 30px;
+}
+
+.dthree-lightbox-next {
+    right: 30px;
+}
+
+.dthree-lightbox-prev:hover,
+.dthree-lightbox-next:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.8);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.dthree-lightbox-prev:focus,
+.dthree-lightbox-next:focus {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+}
+
+.dthree-lightbox-prev:disabled,
+.dthree-lightbox-next:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+/* ==========================================================================
+   Lightbox Caption
+   ========================================================================== */
+
+.dthree-lightbox-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    color: #fff;
+    padding: 40px 20px 20px;
+    text-align: center;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.dthree-lightbox-caption-text {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* ==========================================================================
+   Lightbox Counter
+   ========================================================================== */
+
+.dthree-lightbox-counter {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    z-index: 10001;
+}
+
+/* ==========================================================================
+   Lightbox Thumbnails
+   ========================================================================== */
+
+.dthree-lightbox-thumbnails {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    max-width: 90%;
+    overflow-x: auto;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+    z-index: 10001;
+}
+
+.dthree-lightbox-thumbnails::-webkit-scrollbar {
+    height: 6px;
+}
+
+.dthree-lightbox-thumbnails::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+
+.dthree-lightbox-thumbnails::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+}
+
+.dthree-lightbox-thumbnail {
+    flex-shrink: 0;
+    width: 80px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 4px;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.dthree-lightbox-thumbnail:hover {
+    opacity: 0.8;
+}
+
+.dthree-lightbox-thumbnail.active {
+    opacity: 1;
+    border-color: #fff;
+    transform: scale(1.05);
+}
+
+/* ==========================================================================
+   Lightbox Loading State
+   ========================================================================== */
+
+.dthree-lightbox-loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.dthree-lightbox-spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid rgba(255, 255, 255, 0.2);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: lightboxSpin 0.8s linear infinite;
+}
+
+@keyframes lightboxSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ==========================================================================
+   Lightbox Zoom Controls
+   ========================================================================== */
+
+.dthree-lightbox-zoom {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    gap: 10px;
+    z-index: 10001;
+}
+
+.dthree-lightbox-zoom-btn {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.dthree-lightbox-zoom-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.8);
+}
+
+.dthree-lightbox-zoom-btn:focus {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+}
+
+.dthree-lightbox-image.zoomed {
+    cursor: move;
+    max-width: none;
+    max-height: none;
+}
+
+/* ==========================================================================
+   Image Gallery Lightbox Trigger
+   ========================================================================== */
+
+.dthree-lightbox-trigger {
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.dthree-lightbox-trigger::after {
+    content: '\f002'; /* FontAwesome search icon */
+    font-family: 'Font Awesome 5 Free', sans-serif;
+    font-weight: 900;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 60px;
+    height: 60px;
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.dthree-lightbox-trigger:hover::after {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+}
+
+.dthree-lightbox-trigger img {
+    transition: transform 0.3s ease;
+}
+
+.dthree-lightbox-trigger:hover img {
+    transform: scale(1.05);
+}
+
+/* Alternative icon using Unicode */
+.dthree-lightbox-trigger.no-fontawesome::after {
+    content: '🔍';
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* ==========================================================================
+   Responsive Design
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    .dthree-lightbox-content {
+        max-width: 95%;
+    }
+    
+    .dthree-lightbox-close {
+        top: 10px;
+        right: 10px;
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
+    
+    .dthree-lightbox-prev,
+    .dthree-lightbox-next {
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+    }
+    
+    .dthree-lightbox-prev {
+        left: 10px;
+    }
+    
+    .dthree-lightbox-next {
+        right: 10px;
+    }
+    
+    .dthree-lightbox-thumbnails {
+        bottom: 10px;
+        gap: 5px;
+        padding: 5px;
+    }
+    
+    .dthree-lightbox-thumbnail {
+        width: 60px;
+        height: 45px;
+    }
+    
+    .dthree-lightbox-zoom {
+        top: 10px;
+        left: 10px;
+        gap: 5px;
+    }
+    
+    .dthree-lightbox-zoom-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 18px;
+    }
+    
+    .dthree-lightbox-caption {
+        font-size: 14px;
+        padding: 30px 15px 15px;
+    }
+}
+
+/* ==========================================================================
+   Accessibility
+   ========================================================================== */
+
+.dthree-lightbox[aria-hidden="true"] {
+    display: none;
+}
+
+.dthree-lightbox-close:focus-visible,
+.dthree-lightbox-prev:focus-visible,
+.dthree-lightbox-next:focus-visible,
+.dthree-lightbox-zoom-btn:focus-visible {
+    outline: 3px solid #fff;
+    outline-offset: 3px;
+}
+
+/* Screen reader only */
+.dthree-lightbox .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .dthree-lightbox,
+    .dthree-lightbox-image,
+    .dthree-lightbox-close,
+    .dthree-lightbox-prev,
+    .dthree-lightbox-next,
+    .dthree-lightbox-thumbnail,
+    .dthree-lightbox-trigger img {
+        animation: none;
+        transition: none;
+    }
+}
+
+/* ==========================================================================
+   Print Styles
+   ========================================================================== */
+
+@media print {
+    .dthree-lightbox {
+        display: none !important;
+    }
+}

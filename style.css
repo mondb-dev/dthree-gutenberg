@@ -3,8 +3,8 @@ Theme Name: DThree Gutenberg
 Theme URI: https://github.com/mondb-dev/dthree-gutenberg
 Author: DThree Dev Team
 Author URI: https://github.com/mondb-dev
-Description: A modern, highly customizable WordPress theme built on Gutenberg with reusable blocks, Bootstrap 5, and best practices for UI/UX, security, and SEO. Features custom blocks for common website components including hero sections, features, testimonials, and more.
-Version: 1.0.0
+Description: A modern, highly customizable WordPress theme built on Gutenberg with reusable blocks, Bootstrap 5, and best practices for UI/UX, security, and SEO. Features 6 custom blocks, 5 professional slider components, accessible lightbox, and 10 UI components (tabs, accordion, pricing tables, progress bars, timeline, modal, video player, alerts, icon boxes, social share).
+Version: 1.2.0
 Requires at least: 6.0
 Tested up to: 6.4
 Requires PHP: 7.4
@@ -13,7 +13,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: dthree-gutenberg
 Tags: block-patterns, block-styles, custom-menu, editor-style, full-site-editing, one-column, two-columns, featured-images, footer-widgets, custom-header, custom-background, custom-colors, theme-options, threaded-comments, translation-ready, accessibility-ready, blog, portfolio, business
 
-DThree Gutenberg is a modern WordPress theme that extends Gutenberg functionality with custom, reusable blocks.
+DThree Gutenberg is a modern WordPress theme with 21 custom blocks including hero sections, features, sliders, lightbox, tabs, accordion, pricing tables, and more.
 */
 
 /* 

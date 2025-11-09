@@ -12,6 +12,38 @@ A modern, highly customizable WordPress theme built on Gutenberg with reusable b
 - **Testimonials**: Customer reviews with ratings and photos
 - **Contact Form**: Secure contact form with spam protection and validation
 
+### Slider Components (NEW!)
+- **Image Slider**: Photo galleries and image showcases with captions
+- **Content Slider**: Hero banners with text, images, and CTAs
+- **Logo Slider**: Client/partner logo carousels with grayscale effects
+- **Card Slider**: Horizontal scrolling cards for products/services
+- **Testimonial Slider**: Rotating customer reviews with star ratings
+
+📖 **[View Slider Documentation](SLIDER-COMPONENTS.md)** | 🚀 **[Quick Reference](SLIDER-QUICK-REFERENCE.md)**
+
+### Lightbox (NEW!)
+- **Full-screen Image Viewer**: Modern, accessible lightbox for all images
+- **Gallery Navigation**: Browse through image collections with ease
+- **Zoom & Pan**: Up to 3x zoom with drag-to-pan functionality
+- **Auto-Detection**: Works automatically with galleries, sliders, and content images
+- **Keyboard Controls**: Full keyboard and screen reader support
+
+📖 **[View Lightbox Documentation](LIGHTBOX.md)** | 🚀 **[Quick Reference](LIGHTBOX-QUICK-REFERENCE.md)**
+
+### UI Components (NEW!)
+- **Tabs**: Organize content in tabbed sections with 3 visual styles
+- **Accordion**: Collapsible content sections for FAQs and expandable content
+- **Pricing Tables**: Showcase pricing plans with featured highlighting and ribbons
+- **Progress Bars**: Display skills, stats, or progress with animated bars
+- **Timeline**: Show chronological events in vertical, horizontal, or alternating layouts
+- **Modal**: Popup windows for forms, videos, and announcements
+- **Video Player**: Embed YouTube, Vimeo, or self-hosted videos
+- **Alerts**: Contextual feedback messages in 8 color variants
+- **Icon Boxes**: Feature grids with icons and descriptions
+- **Social Share**: Share buttons for 8+ social platforms
+
+📖 **[View Components Documentation](COMPONENTS.md)** | 🚀 **[Quick Reference](COMPONENTS-QUICK-REFERENCE.md)**
+
 ### Design & UI/UX
 - Built with Bootstrap 5 for responsive, mobile-first design
 - Customizable through theme.json and WordPress Customizer
@@ -103,6 +135,19 @@ This theme is licensed under the GNU General Public License v2 or later.
 - WordPress: https://wordpress.org/
 
 ## Changelog
+
+### 1.1.0
+- Added 5 professional slider components
+- Image Slider with captions and transitions
+- Content Slider for hero sections
+- Logo Slider with grayscale effects
+- Card Slider for horizontal content
+- Testimonial Slider with multiple styles
+- Added modern lightbox implementation
+- Full-screen image viewing with zoom
+- Gallery navigation and thumbnails
+- Auto-detection for galleries and sliders
+- Comprehensive documentation for sliders and lightbox
 
 ### 1.0.0
 - Initial release

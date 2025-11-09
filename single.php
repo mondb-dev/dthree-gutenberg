@@ -16,6 +16,11 @@ get_header();
                 the_post();
 
                 get_template_part( 'template-parts/content', get_post_type() );
+                
+                // Related Posts
+                if ( get_theme_mod( 'dthree_show_related_posts', true ) ) {
+                    dthree_related_posts();
+                }
 
                 // Author bio
                 if ( is_singular( 'post' ) && get_the_author_meta( 'description' ) ) :

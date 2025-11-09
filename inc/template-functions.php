@@ -235,3 +235,78 @@ function dthree_breadcrumbs() {
     echo '</ol>';
     echo '</nav>';
 }
+
+/**
+ * Breadcrumb shortcode
+ */
+function dthree_breadcrumb_shortcode( $atts ) {
+    ob_start();
+    dthree_breadcrumbs();
+    return ob_get_clean();
+}
+add_shortcode( 'breadcrumbs', 'dthree_breadcrumb_shortcode' );
+
+/**
+ * Social Media Share Buttons for Posts
+ */
+function dthree_social_share_buttons() {
+    if ( ! is_singular( 'post' ) ) {
+        return;
+    }
+    
+    $post_url = urlencode( get_permalink() );
+    $post_title = urlencode( get_the_title() );
+    
+    ?>
+    <div class="dthree-social-share mt-4 mb-4">
+        <h6 class="mb-3"><?php esc_html_e( 'Share this post:', 'dthree-gutenberg' ); ?></h6>
+        <div class="d-flex flex-wrap gap-2">
+            <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $post_url; ?>" 
+               class="btn btn-sm btn-outline-primary" 
+               target="_blank" 
+               rel="noopener noreferrer"
+               aria-label="<?php esc_attr_e( 'Share on Facebook', 'dthree-gutenberg' ); ?>">
+                <i class="bi bi-facebook me-1"></i>
+                <?php esc_html_e( 'Facebook', 'dthree-gutenberg' ); ?>
+            </a>
+            
+            <a href="https://twitter.com/intent/tweet?url=<?php echo $post_url; ?>&text=<?php echo $post_title; ?>" 
+               class="btn btn-sm btn-outline-info" 
+               target="_blank" 
+               rel="noopener noreferrer"
+               aria-label="<?php esc_attr_e( 'Share on Twitter', 'dthree-gutenberg' ); ?>">
+                <i class="bi bi-twitter me-1"></i>
+                <?php esc_html_e( 'Twitter', 'dthree-gutenberg' ); ?>
+            </a>
+            
+            <a href="https://www.linkedin.com/shareArticle?mini=true&url=<?php echo $post_url; ?>&title=<?php echo $post_title; ?>" 
+               class="btn btn-sm btn-outline-primary" 
+               target="_blank" 
+               rel="noopener noreferrer"
+               aria-label="<?php esc_attr_e( 'Share on LinkedIn', 'dthree-gutenberg' ); ?>">
+                <i class="bi bi-linkedin me-1"></i>
+                <?php esc_html_e( 'LinkedIn', 'dthree-gutenberg' ); ?>
+            </a>
+            
+            <a href="https://pinterest.com/pin/create/button/?url=<?php echo $post_url; ?>&description=<?php echo $post_title; ?>" 
+               class="btn btn-sm btn-outline-danger" 
+               target="_blank" 
+               rel="noopener noreferrer"
+               aria-label="<?php esc_attr_e( 'Share on Pinterest', 'dthree-gutenberg' ); ?>">
+                <i class="bi bi-pinterest me-1"></i>
+                <?php esc_html_e( 'Pinterest', 'dthree-gutenberg' ); ?>
+            </a>
+            
+            <a href="https://api.whatsapp.com/send?text=<?php echo $post_title . ' ' . $post_url; ?>" 
+               class="btn btn-sm btn-outline-success" 
+               target="_blank" 
+               rel="noopener noreferrer"
+               aria-label="<?php esc_attr_e( 'Share on WhatsApp', 'dthree-gutenberg' ); ?>">
+                <i class="bi bi-whatsapp me-1"></i>
+                <?php esc_html_e( 'WhatsApp', 'dthree-gutenberg' ); ?>
+            </a>
+        </div>
+    </div>
+    <?php
+}
+

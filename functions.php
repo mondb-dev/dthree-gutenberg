@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Define theme constants
  */
-define( 'DTHREE_VERSION', '1.0.0' );
+define( 'DTHREE_VERSION', '1.2.0' );
 define( 'DTHREE_THEME_DIR', get_template_directory() );
 define( 'DTHREE_THEME_URI', get_template_directory_uri() );
 
@@ -137,6 +137,39 @@ function dthree_enqueue_scripts() {
         array( 'dthree-style' ),
         DTHREE_VERSION
     );
+    
+    // Print stylesheet
+    wp_enqueue_style(
+        'dthree-print',
+        DTHREE_THEME_URI . '/assets/css/print.css',
+        array(),
+        DTHREE_VERSION,
+        'print'
+    );
+    
+    // Slider components styles
+    wp_enqueue_style(
+        'dthree-sliders',
+        DTHREE_THEME_URI . '/assets/css/sliders.css',
+        array( 'dthree-style' ),
+        DTHREE_VERSION
+    );
+    
+    // Lightbox styles
+    wp_enqueue_style(
+        'dthree-lightbox',
+        DTHREE_THEME_URI . '/assets/css/lightbox.css',
+        array( 'dthree-style' ),
+        DTHREE_VERSION
+    );
+    
+    // Component blocks styles
+    wp_enqueue_style(
+        'dthree-components',
+        DTHREE_THEME_URI . '/assets/css/components.css',
+        array( 'dthree-style' ),
+        DTHREE_VERSION
+    );
 
     // Bootstrap JS Bundle (includes Popper)
     wp_enqueue_script(
@@ -147,11 +180,20 @@ function dthree_enqueue_scripts() {
         true
     );
 
+    // Lightbox JavaScript
+    wp_enqueue_script(
+        'dthree-lightbox',
+        DTHREE_THEME_URI . '/assets/js/lightbox.js',
+        array(),
+        DTHREE_VERSION,
+        true
+    );
+    
     // Theme JavaScript
     wp_enqueue_script(
         'dthree-main',
         DTHREE_THEME_URI . '/assets/js/main.js',
-        array( 'bootstrap' ),
+        array( 'bootstrap', 'dthree-lightbox' ),
         DTHREE_VERSION,
         true
     );
@@ -341,6 +383,29 @@ require_once DTHREE_THEME_DIR . '/inc/blocks/testimonials.php';
 require_once DTHREE_THEME_DIR . '/inc/blocks/contact-form.php';
 
 /**
+ * Include slider blocks
+ */
+require_once DTHREE_THEME_DIR . '/inc/blocks/image-slider.php';
+require_once DTHREE_THEME_DIR . '/inc/blocks/content-slider.php';
+require_once DTHREE_THEME_DIR . '/inc/blocks/logo-slider.php';
+require_once DTHREE_THEME_DIR . '/inc/blocks/card-slider.php';
+require_once DTHREE_THEME_DIR . '/inc/blocks/testimonial-slider.php';
+
+/**
+ * Include component blocks
+ */
+require_once DTHREE_THEME_DIR . '/inc/blocks/tabs.php';
+require_once DTHREE_THEME_DIR . '/inc/blocks/accordion.php';
+require_once DTHREE_THEME_DIR . '/inc/blocks/pricing-tables.php';
+require_once DTHREE_THEME_DIR . '/inc/blocks/progress-bars.php';
+require_once DTHREE_THEME_DIR . '/inc/blocks/timeline.php';
+require_once DTHREE_THEME_DIR . '/inc/blocks/modal.php';
+require_once DTHREE_THEME_DIR . '/inc/blocks/video-player.php';
+require_once DTHREE_THEME_DIR . '/inc/blocks/alerts.php';
+require_once DTHREE_THEME_DIR . '/inc/blocks/icon-boxes.php';
+require_once DTHREE_THEME_DIR . '/inc/blocks/social-share.php';
+
+/**
  * Include template functions
  */
 require_once DTHREE_THEME_DIR . '/inc/template-functions.php';
@@ -354,3 +419,28 @@ require_once DTHREE_THEME_DIR . '/inc/customizer.php';
  * Include security functions
  */
 require_once DTHREE_THEME_DIR . '/inc/security.php';
+
+/**
+ * Include Design System
+ */
+require_once DTHREE_THEME_DIR . '/inc/design-system.php';
+
+/**
+ * Include theme enhancements
+ */
+require_once DTHREE_THEME_DIR . '/inc/enhancements.php';
+
+/**
+ * Include lightbox functionality
+ */
+require_once DTHREE_THEME_DIR . '/inc/lightbox.php';
+
+/**
+ * Include advanced SEO features
+ */
+require_once DTHREE_THEME_DIR . '/inc/seo.php';
+
+/**
+ * Include AI-friendly features
+ */
+require_once DTHREE_THEME_DIR . '/inc/ai-features.php';

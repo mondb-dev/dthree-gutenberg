@@ -1,0 +1,816 @@
+/**
+ * Components Stylesheet
+ * Styles for all component blocks (Tabs, Accordion, Pricing, Progress, Timeline, Modal, Video, Alerts, Icon Boxes, Social Share)
+ *
+ * @package DThree_Gutenberg
+ */
+
+/* ============================================
+   TABS
+   ============================================ */
+
+.dthree-tabs {
+    margin-bottom: 2rem;
+}
+
+.dthree-tabs .nav-link {
+    transition: all 0.3s ease;
+}
+
+/* Pills Style */
+.dthree-tabs-pills .nav-link {
+    border-radius: 50px;
+    padding: 0.75rem 1.5rem;
+    font-weight: 500;
+}
+
+.dthree-tabs-pills .nav-link:hover {
+    background-color: rgba(var(--bs-primary-rgb), 0.1);
+}
+
+.dthree-tabs-pills .nav-link.active {
+    background-color: var(--bs-primary);
+    color: white;
+}
+
+/* Underline Style */
+.dthree-tabs-underline .nav-link {
+    border: none;
+    border-bottom: 3px solid transparent;
+    border-radius: 0;
+    padding: 1rem 1.5rem;
+}
+
+.dthree-tabs-underline .nav-link:hover {
+    border-bottom-color: rgba(var(--bs-primary-rgb), 0.3);
+}
+
+.dthree-tabs-underline .nav-link.active {
+    border-bottom-color: var(--bs-primary);
+    color: var(--bs-primary);
+    background-color: transparent;
+}
+
+/* Boxed Style */
+.dthree-tabs-boxed .nav-link {
+    border: 2px solid #dee2e6;
+    border-radius: 8px;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.dthree-tabs-boxed .nav-link:hover {
+    border-color: var(--bs-primary);
+}
+
+.dthree-tabs-boxed .nav-link.active {
+    border-color: var(--bs-primary);
+    background-color: var(--bs-primary);
+    color: white;
+}
+
+.tab-content-inner {
+    padding: 1.5rem;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+/* ============================================
+   ACCORDION
+   ============================================ */
+
+.dthree-accordion .accordion-item {
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    margin-bottom: 0.5rem;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.dthree-accordion .accordion-button {
+    font-weight: 600;
+    padding: 1.25rem 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.dthree-accordion .accordion-button:not(.collapsed) {
+    background-color: var(--bs-primary);
+    color: white;
+}
+
+.dthree-accordion .accordion-button:focus {
+    box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.25);
+}
+
+.dthree-accordion-bordered .accordion-item {
+    border: 2px solid #dee2e6;
+}
+
+.dthree-accordion-bordered .accordion-button:not(.collapsed) {
+    border-bottom: 2px solid rgba(0, 0, 0, 0.125);
+}
+
+.dthree-accordion .icon-left .accordion-button {
+    flex-direction: row;
+}
+
+.dthree-accordion .icon-right .accordion-button {
+    flex-direction: row-reverse;
+}
+
+.dthree-accordion .accordion-title {
+    flex: 1;
+}
+
+/* ============================================
+   PRICING TABLES
+   ============================================ */
+
+.dthree-pricing-tables {
+    margin-bottom: 2rem;
+}
+
+.pricing-plan {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    transition: all 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+.dthree-pricing-card .pricing-plan {
+    border: 1px solid #dee2e6;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.dthree-pricing-card .pricing-plan:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.pricing-plan.featured {
+    border: 2px solid var(--bs-primary);
+    box-shadow: 0 10px 40px rgba(var(--bs-primary-rgb), 0.2);
+    transform: scale(1.05);
+}
+
+.pricing-ribbon {
+    position: absolute;
+    top: 20px;
+    right: -35px;
+    background: var(--bs-primary);
+    color: white;
+    padding: 5px 40px;
+    transform: rotate(45deg);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.pricing-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.plan-name {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--bs-dark);
+}
+
+.plan-description {
+    color: #6c757d;
+    margin-bottom: 0;
+}
+
+.pricing-price {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 1.5rem 0;
+    border-top: 1px solid #dee2e6;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.pricing-price .currency {
+    font-size: 1.5rem;
+    vertical-align: super;
+    font-weight: 600;
+}
+
+.pricing-price .amount {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--bs-primary);
+    line-height: 1;
+}
+
+.pricing-price .period {
+    font-size: 1rem;
+    color: #6c757d;
+    margin-left: 0.25rem;
+}
+
+.pricing-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem 0;
+    flex: 1;
+}
+
+.pricing-features li {
+    padding: 0.75rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.pricing-features i {
+    color: var(--bs-success);
+    font-size: 1.25rem;
+    flex-shrink: 0;
+}
+
+.pricing-footer {
+    margin-top: auto;
+}
+
+/* Minimal Style */
+.dthree-pricing-minimal .pricing-plan {
+    border: none;
+    box-shadow: none;
+    border-bottom: 3px solid transparent;
+}
+
+.dthree-pricing-minimal .pricing-plan:hover {
+    border-bottom-color: var(--bs-primary);
+}
+
+/* Bordered Style */
+.dthree-pricing-bordered .pricing-plan {
+    border: 3px solid #dee2e6;
+}
+
+/* ============================================
+   PROGRESS BARS
+   ============================================ */
+
+.dthree-progress-bars {
+    margin-bottom: 2rem;
+}
+
+.progress-label {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.progress-percentage {
+    font-weight: 700;
+    color: var(--bs-primary);
+}
+
+.progress {
+    height: 1rem;
+    border-radius: 50px;
+    overflow: visible;
+    background-color: #e9ecef;
+}
+
+.progress-small .progress {
+    height: 0.5rem;
+}
+
+.progress-medium .progress {
+    height: 1rem;
+}
+
+.progress-large .progress {
+    height: 1.5rem;
+}
+
+.progress-bar {
+    border-radius: 50px;
+    transition: width 1.5s ease-in-out;
+    position: relative;
+    overflow: visible;
+}
+
+.animate-on-view .progress-bar {
+    width: 0 !important;
+}
+
+/* ============================================
+   TIMELINE
+   ============================================ */
+
+.dthree-timeline {
+    position: relative;
+    padding: 2rem 0;
+}
+
+/* Vertical Timeline */
+.timeline-vertical {
+    padding-left: 2rem;
+}
+
+.timeline-vertical::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(to bottom, var(--bs-primary), rgba(var(--bs-primary-rgb), 0.3));
+}
+
+.timeline-vertical .timeline-item {
+    position: relative;
+    padding-left: 3rem;
+    padding-bottom: 2rem;
+}
+
+.timeline-vertical .timeline-marker {
+    position: absolute;
+    left: -2rem;
+    top: 0;
+    width: 3rem;
+    height: 3rem;
+    background: white;
+    border: 3px solid var(--bs-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+.timeline-vertical.icon-square .timeline-marker {
+    border-radius: 8px;
+}
+
+.timeline-vertical.icon-none .timeline-marker {
+    border: none;
+    background: var(--bs-primary);
+}
+
+.timeline-marker i {
+    font-size: 1.25rem;
+    color: var(--bs-primary);
+}
+
+.timeline-vertical.icon-none .timeline-marker i {
+    color: white;
+}
+
+.timeline-content {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.timeline-date {
+    display: inline-block;
+    background: var(--bs-primary);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+}
+
+.timeline-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--bs-dark);
+}
+
+.timeline-description {
+    color: #6c757d;
+    margin-bottom: 0;
+}
+
+/* Alternating Timeline */
+.timeline-alternating {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.timeline-alternating::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(to bottom, var(--bs-primary), rgba(var(--bs-primary-rgb), 0.3));
+}
+
+.timeline-alternating .timeline-item {
+    width: 50%;
+    padding-bottom: 2rem;
+    position: relative;
+}
+
+.timeline-alternating .timeline-item.left {
+    padding-right: 3rem;
+    text-align: right;
+}
+
+.timeline-alternating .timeline-item.right {
+    margin-left: 50%;
+    padding-left: 3rem;
+}
+
+.timeline-alternating .timeline-marker {
+    position: absolute;
+    top: 0;
+    width: 3rem;
+    height: 3rem;
+    background: white;
+    border: 3px solid var(--bs-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.timeline-alternating .timeline-item.left .timeline-marker {
+    right: -1.5rem;
+}
+
+.timeline-alternating .timeline-item.right .timeline-marker {
+    left: -1.5rem;
+}
+
+/* Horizontal Timeline */
+.timeline-horizontal {
+    display: flex;
+    overflow-x: auto;
+    gap: 2rem;
+    padding-bottom: 1rem;
+}
+
+.timeline-horizontal .timeline-item {
+    min-width: 300px;
+    flex-shrink: 0;
+}
+
+.timeline-horizontal .timeline-marker {
+    width: 3rem;
+    height: 3rem;
+    background: var(--bs-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+}
+
+.timeline-horizontal .timeline-marker i {
+    color: white;
+}
+
+/* ============================================
+   MODAL
+   ============================================ */
+
+.dthree-modal-trigger {
+    margin-bottom: 1rem;
+}
+
+.modal-header {
+    border-bottom: 2px solid #dee2e6;
+}
+
+.modal-title {
+    font-weight: 700;
+}
+
+.modal-footer {
+    border-top: 2px solid #dee2e6;
+}
+
+/* ============================================
+   VIDEO PLAYER
+   ============================================ */
+
+.dthree-video-player {
+    margin-bottom: 2rem;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.dthree-video-player iframe,
+.dthree-video-player video {
+    border-radius: 12px;
+}
+
+/* ============================================
+   ALERTS
+   ============================================ */
+
+.dthree-alert {
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.5rem;
+    border-left: 4px solid currentColor;
+}
+
+.dthree-alert .alert-icon {
+    font-size: 1.5rem;
+}
+
+.dthree-alert .alert-heading {
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.dthree-alert .alert-message {
+    margin-bottom: 0;
+}
+
+/* ============================================
+   ICON BOXES
+   ============================================ */
+
+.dthree-icon-boxes {
+    margin-bottom: 2rem;
+}
+
+.icon-box {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+/* Card Style */
+.icon-boxes-card .icon-box {
+    border: 1px solid #dee2e6;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.icon-boxes-card .icon-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Minimal Style */
+.icon-boxes-minimal .icon-box {
+    border: none;
+    box-shadow: none;
+}
+
+.icon-boxes-minimal .icon-box:hover {
+    background-color: #f8f9fa;
+}
+
+/* Bordered Style */
+.icon-boxes-bordered .icon-box {
+    border: 2px solid #dee2e6;
+}
+
+.icon-boxes-bordered .icon-box:hover {
+    border-color: var(--bs-primary);
+}
+
+/* Hover Style */
+.icon-boxes-hover .icon-box {
+    border: 1px solid transparent;
+}
+
+.icon-boxes-hover .icon-box:hover {
+    border-color: var(--bs-primary);
+    background: linear-gradient(135deg, rgba(var(--bs-primary-rgb), 0.05), rgba(var(--bs-primary-rgb), 0.1));
+}
+
+.icon-box-icon {
+    margin-bottom: 1.5rem;
+}
+
+.icon-position-left .icon-box {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+}
+
+.icon-position-left .icon-box-icon {
+    margin-bottom: 0;
+    flex-shrink: 0;
+}
+
+.icon-box-icon i {
+    font-size: 3rem;
+    color: var(--bs-primary);
+    display: block;
+}
+
+.icon-circle .icon-box-icon i {
+    width: 4rem;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(var(--bs-primary-rgb), 0.1);
+    border-radius: 50%;
+}
+
+.icon-square .icon-box-icon i {
+    width: 4rem;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(var(--bs-primary-rgb), 0.1);
+    border-radius: 8px;
+}
+
+.icon-box-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: var(--bs-dark);
+}
+
+.icon-box-description {
+    color: #6c757d;
+    margin-bottom: 0;
+    line-height: 1.6;
+}
+
+/* ============================================
+   SOCIAL SHARE
+   ============================================ */
+
+.dthree-social-share {
+    margin: 2rem 0;
+}
+
+.social-share-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.social-share-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1.25rem;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Button Style */
+.share-buttons .social-share-button {
+    background-color: var(--share-color);
+    color: white;
+    border: 2px solid var(--share-color);
+}
+
+.share-buttons .social-share-button:hover {
+    background-color: transparent;
+    color: var(--share-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Icons Style */
+.share-icons .social-share-button {
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: var(--share-color);
+    color: white;
+}
+
+.share-icons .social-share-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.share-icons .share-label {
+    display: none;
+}
+
+/* Minimal Style */
+.share-minimal .social-share-button {
+    background-color: transparent;
+    color: var(--share-color);
+    border: 1px solid var(--share-color);
+}
+
+.share-minimal .social-share-button:hover {
+    background-color: var(--share-color);
+    color: white;
+}
+
+/* Sizes */
+.share-small .social-share-button {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.875rem;
+}
+
+.share-small.share-icons .social-share-button {
+    width: 2rem;
+    height: 2rem;
+}
+
+.share-large .social-share-button {
+    padding: 0.875rem 1.75rem;
+    font-size: 1.125rem;
+}
+
+.share-large.share-icons .social-share-button {
+    width: 3rem;
+    height: 3rem;
+}
+
+.share-count {
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 0.125rem 0.5rem;
+    border-radius: 10px;
+    font-size: 0.75rem;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+    .timeline-alternating {
+        padding-left: 2rem;
+    }
+    
+    .timeline-alternating::before {
+        left: 0;
+        transform: none;
+    }
+    
+    .timeline-alternating .timeline-item {
+        width: 100%;
+        padding-left: 3rem;
+        padding-right: 0;
+        text-align: left;
+        margin-left: 0 !important;
+    }
+    
+    .timeline-alternating .timeline-marker {
+        left: -1.5rem !important;
+        right: auto !important;
+    }
+    
+    .pricing-plan.featured {
+        transform: none;
+    }
+    
+    .icon-position-left .icon-box {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .icon-position-left .icon-box-icon {
+        margin-bottom: 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .pricing-price .amount {
+        font-size: 2.5rem;
+    }
+    
+    .plan-name {
+        font-size: 1.5rem;
+    }
+    
+    .social-share-buttons {
+        justify-content: center;
+    }
+    
+    .timeline-horizontal {
+        gap: 1rem;
+    }
+    
+    .timeline-horizontal .timeline-item {
+        min-width: 250px;
+    }
+}

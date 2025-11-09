@@ -1,0 +1,341 @@
+/**
+ * Print Stylesheet
+ * Optimized styles for printing blog posts and pages
+ *
+ * @package DThree_Gutenberg
+ */
+
+/* Reset and basics */
+@media print {
+    /* Hide unnecessary elements */
+    .site-header,
+    .site-footer,
+    .navbar,
+    .sidebar,
+    .widget-area,
+    .comments-area,
+    .post-navigation,
+    .author-bio,
+    .related-posts,
+    .dthree-social-share,
+    .cookie-consent,
+    .scroll-to-top,
+    nav,
+    aside,
+    button,
+    .btn,
+    .table-of-contents,
+    #scrollToTop,
+    .skip-link {
+        display: none !important;
+    }
+    
+    /* Page setup */
+    * {
+        background: transparent !important;
+        color: #000 !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+    
+    body {
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 12pt;
+        line-height: 1.5;
+        margin: 0;
+        padding: 0;
+    }
+    
+    /* Container and layout */
+    .container,
+    .site-main {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    
+    .row {
+        display: block !important;
+    }
+    
+    .col,
+    .col-lg-8,
+    .col-md-8,
+    [class*="col-"] {
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: none !important;
+    }
+    
+    /* Typography */
+    h1 {
+        font-size: 24pt;
+        margin-top: 0;
+        margin-bottom: 12pt;
+    }
+    
+    h2 {
+        font-size: 18pt;
+        margin-top: 18pt;
+        margin-bottom: 10pt;
+        page-break-after: avoid;
+    }
+    
+    h3 {
+        font-size: 16pt;
+        margin-top: 14pt;
+        margin-bottom: 8pt;
+        page-break-after: avoid;
+    }
+    
+    h4, h5, h6 {
+        font-size: 14pt;
+        margin-top: 12pt;
+        margin-bottom: 6pt;
+        page-break-after: avoid;
+    }
+    
+    p {
+        margin: 0 0 12pt 0;
+        orphans: 3;
+        widows: 3;
+    }
+    
+    /* Links */
+    a {
+        text-decoration: underline;
+        color: #000 !important;
+    }
+    
+    a[href]:after {
+        content: " (" attr(href) ")";
+        font-size: 10pt;
+        color: #666;
+    }
+    
+    /* Don't show links for anchors */
+    a[href^="#"]:after,
+    a[href^="javascript:"]:after {
+        content: "";
+    }
+    
+    /* Images */
+    img {
+        max-width: 100% !important;
+        height: auto !important;
+        page-break-inside: avoid;
+    }
+    
+    .post-thumbnail,
+    .wp-post-image {
+        display: block;
+        margin-bottom: 12pt;
+    }
+    
+    /* Article header */
+    .entry-header {
+        margin-bottom: 20pt;
+        border-bottom: 2pt solid #000;
+        padding-bottom: 10pt;
+    }
+    
+    .entry-title {
+        font-weight: bold;
+    }
+    
+    .entry-meta {
+        font-size: 10pt;
+        color: #666 !important;
+        margin-top: 8pt;
+    }
+    
+    .entry-meta i {
+        display: none;
+    }
+    
+    /* Content */
+    .entry-content {
+        margin-top: 20pt;
+    }
+    
+    /* Code blocks */
+    pre,
+    code {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+        font-family: "Courier New", Courier, monospace;
+        font-size: 10pt;
+    }
+    
+    pre {
+        padding: 10pt;
+        margin: 12pt 0;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+    }
+    
+    code {
+        padding: 2pt 4pt;
+    }
+    
+    /* Blockquotes */
+    blockquote {
+        margin: 12pt 20pt;
+        padding: 10pt 15pt;
+        border-left: 3pt solid #999;
+        font-style: italic;
+        page-break-inside: avoid;
+    }
+    
+    /* Lists */
+    ul, ol {
+        margin: 12pt 0;
+        padding-left: 25pt;
+    }
+    
+    li {
+        margin-bottom: 6pt;
+    }
+    
+    /* Tables */
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 12pt 0;
+        page-break-inside: avoid;
+    }
+    
+    th, td {
+        border: 1px solid #999;
+        padding: 6pt 8pt;
+        text-align: left;
+    }
+    
+    th {
+        font-weight: bold;
+        background-color: #f0f0f0 !important;
+    }
+    
+    /* Footer info */
+    .entry-footer {
+        margin-top: 20pt;
+        padding-top: 10pt;
+        border-top: 1pt solid #999;
+        font-size: 10pt;
+    }
+    
+    .cat-links,
+    .tags-links {
+        display: block;
+        margin-bottom: 6pt;
+    }
+    
+    /* Page breaks */
+    article {
+        page-break-after: always;
+    }
+    
+    article:last-of-type {
+        page-break-after: auto;
+    }
+    
+    /* Avoid breaking inside */
+    figure,
+    table,
+    pre,
+    blockquote,
+    .card,
+    .wp-block-image {
+        page-break-inside: avoid;
+    }
+    
+    /* Headings should stay with next element */
+    h1, h2, h3, h4, h5, h6 {
+        page-break-after: avoid;
+        page-break-inside: avoid;
+    }
+    
+    /* Site branding for print */
+    .site-main::before {
+        content: attr(data-site-name);
+        display: block;
+        font-size: 14pt;
+        font-weight: bold;
+        margin-bottom: 20pt;
+        text-align: center;
+    }
+    
+    /* Print URL at bottom */
+    .entry-content::after {
+        content: "Source: " attr(data-page-url);
+        display: block;
+        margin-top: 20pt;
+        padding-top: 10pt;
+        border-top: 1pt solid #999;
+        font-size: 10pt;
+        color: #666 !important;
+    }
+    
+    /* WordPress blocks */
+    .wp-block-image {
+        margin: 12pt 0;
+    }
+    
+    .wp-block-quote {
+        margin: 12pt 20pt;
+        padding: 10pt 15pt;
+        border-left: 3pt solid #999;
+    }
+    
+    .wp-block-code {
+        border: 1px solid #999;
+        padding: 10pt;
+        font-family: "Courier New", Courier, monospace;
+    }
+    
+    /* Galleries */
+    .gallery {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10pt;
+        margin: 12pt 0;
+        page-break-inside: avoid;
+    }
+    
+    .gallery-item {
+        page-break-inside: avoid;
+    }
+    
+    /* Utility */
+    .screen-reader-text {
+        position: static !important;
+        clip: auto !important;
+    }
+    
+    /* Bootstrap overrides */
+    .container-fluid {
+        padding: 0 !important;
+    }
+    
+    .mb-1, .mb-2, .mb-3, .mb-4, .mb-5,
+    .mt-1, .mt-2, .mt-3, .mt-4, .mt-5 {
+        margin: 0 !important;
+    }
+    
+    .card {
+        border: none !important;
+        box-shadow: none !important;
+    }
+    
+    /* Ensure readability */
+    @page {
+        margin: 2cm;
+        size: A4;
+    }
+    
+    /* First page header */
+    @page :first {
+        margin-top: 3cm;
+    }
+}

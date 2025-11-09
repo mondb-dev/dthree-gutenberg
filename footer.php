@@ -45,6 +45,14 @@
             </div>
             <div class="col-md-6 text-md-end">
                 <?php
+                // Display social media links
+                dthree_display_social_links( array(
+                    'size'  => 'normal',
+                    'class' => 'd-inline-block mb-3 mb-md-0',
+                ) );
+                ?>
+                
+                <?php
                 wp_nav_menu( array(
                     'theme_location' => 'footer',
                     'container'      => false,
@@ -53,6 +61,21 @@
                     'depth'          => 1,
                 ) );
                 ?>
+            </div>
+        </div>
+        
+        <!-- Theme Credit -->
+        <div class="row mt-4">
+            <div class="col-12 text-center">
+                <p class="mb-0 small text-white-50">
+                    <?php
+                    printf(
+                        /* translators: %s: Theme developer link */
+                        esc_html__( 'Theme built by %s', 'dthree-gutenberg' ),
+                        '<a href="https://dthree.com.ph" target="_blank" rel="noopener" class="text-white text-decoration-none fw-semibold">Dthree Digital</a>'
+                    );
+                    ?>
+                </p>
             </div>
         </div>
     </div>

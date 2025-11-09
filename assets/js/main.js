@@ -296,6 +296,9 @@
 
     // Initialize mobile menu
     initMobileMenu();
+    
+    // Initialize cookie consent
+    initCookieConsent();
 
     // Re-initialize on window resize
     let resizeTimer;
@@ -308,5 +311,71 @@
             }
         }, 250);
     });
+    
+    /**
+     * Cookie Consent functionality
+     */
+    function initCookieConsent() {
+        const consentBanner = document.getElementById('dthree-cookie-consent');
+        
+        if (!consentBanner) {
+            return;
+        }
+        
+        // Check if user has already made a choice
+        const cookieConsent = getCookie('dthree_cookie_consent');
+        
+        if (!cookieConsent) {
+            // Show banner after a short delay
+            setTimeout(function() {
+                consentBanner.style.display = 'block';
+            }, 1000);
+        }
+        
+        // Accept cookies
+        const acceptBtn = document.getElementById('dthree-accept-cookies');
+        if (acceptBtn) {
+            acceptBtn.addEventListener('click', function() {
+                setCookie('dthree_cookie_consent', 'accepted', 365);
+                consentBanner.style.display = 'none';
+            });
+        }
+        
+        // Decline cookies
+        const declineBtn = document.getElementById('dthree-decline-cookies');
+        if (declineBtn) {
+            declineBtn.addEventListener('click', function() {
+                setCookie('dthree_cookie_consent', 'declined', 365);
+                consentBanner.style.display = 'none';
+            });
+        }
+    }
+    
+    /**
+     * Set cookie
+     */
+    function setCookie(name, value, days) {
+        const expires = new Date();
+        expires.setTime(expires.getTime() + (days * 24 * 60 * 60 * 1000));
+        document.cookie = name + '=' + value + ';expires=' + expires.toUTCString() + ';path=/';
+    }
+    
+    /**
+     * Get cookie
+     */
+    function getCookie(name) {
+        const nameEQ = name + '=';
+        const ca = document.cookie.split(';');
+        for (let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) === ' ') {
+                c = c.substring(1, c.length);
+            }
+            if (c.indexOf(nameEQ) === 0) {
+                return c.substring(nameEQ.length, c.length);
+            }
+        }
+        return null;
+    }
 
 })();

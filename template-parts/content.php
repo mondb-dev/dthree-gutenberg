@@ -30,10 +30,15 @@
                         <?php echo esc_html( get_the_author() ); ?>
                     </a>
                 </span>
-                <?php if ( ! is_singular() ) : ?>
+                <?php if ( get_theme_mod( 'dthree_show_reading_time', true ) ) : ?>
                     <span class="reading-time ms-3">
                         <i class="bi bi-clock" aria-hidden="true"></i>
                         <?php echo esc_html( dthree_get_reading_time() ); ?>
+                    </span>
+                <?php endif; ?>
+                <?php if ( is_singular() ) : ?>
+                    <span class="post-views ms-3">
+                        <?php dthree_display_post_views(); ?>
                     </span>
                 <?php endif; ?>
             </div>

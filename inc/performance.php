@@ -178,19 +178,6 @@ add_filter( 'jpeg_quality', 'dthree_optimize_image_quality', 10, 2 );
 add_filter( 'wp_editor_set_quality', 'dthree_optimize_image_quality', 10, 2 );
 
 /**
- * Remove query strings from static resources
- * Improves caching
- */
-function dthree_remove_query_strings( $src ) {
-    if ( strpos( $src, '?ver=' ) ) {
-        $src = remove_query_arg( 'ver', $src );
-    }
-    return $src;
-}
-add_filter( 'script_loader_src', 'dthree_remove_query_strings', 15 );
-add_filter( 'style_loader_src', 'dthree_remove_query_strings', 15 );
-
-/**
  * Disable emoji scripts (saves ~15KB and 1 HTTP request)
  */
 function dthree_disable_emojis() {

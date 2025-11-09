@@ -190,12 +190,23 @@ function dthree_pagination() {
 }
 
 /**
+ * Calculate reading time from content
+ * 
+ * @param string $content Post content
+ * @return int Reading time in minutes
+ */
+function dthree_calculate_reading_time( $content ) {
+    $word_count = str_word_count( wp_strip_all_tags( $content ) );
+    $reading_time = ceil( $word_count / 200 ); // Average reading speed: 200 words per minute
+    return $reading_time;
+}
+
+/**
  * Get estimated reading time
  */
 function dthree_get_reading_time() {
     $content = get_post_field( 'post_content', get_the_ID() );
-    $word_count = str_word_count( wp_strip_all_tags( $content ) );
-    $reading_time = ceil( $word_count / 200 ); // Average reading speed: 200 words per minute
+    $reading_time = dthree_calculate_reading_time( $content );
     
     return sprintf(
         /* translators: %s: Reading time in minutes */

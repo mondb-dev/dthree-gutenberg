@@ -412,6 +412,8 @@ require_once DTHREE_THEME_DIR . '/inc/blocks/video-player.php';
 require_once DTHREE_THEME_DIR . '/inc/blocks/alerts.php';
 require_once DTHREE_THEME_DIR . '/inc/blocks/icon-boxes.php';
 require_once DTHREE_THEME_DIR . '/inc/blocks/social-share.php';
+require_once DTHREE_THEME_DIR . '/inc/blocks/data-table.php';
+require_once DTHREE_THEME_DIR . '/inc/blocks/charts.php';
 
 /**
  * Include template functions

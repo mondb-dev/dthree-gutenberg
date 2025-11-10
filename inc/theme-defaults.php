@@ -864,15 +864,15 @@ function dthree_setup_page_content() {
                 <h2>Next Steps</h2>
                 <ul>
                     <li><strong><a href="<?php echo admin_url( 'customize.php' ); ?>">Customize Appearance</a></strong> - Adjust colors, fonts, and layout</li>
-                    <li><strong><a href="<?php echo admin_url( 'post-new.php?post_type=page' ); ?>">Create Pages</a></strong> - Build pages using the 21 custom blocks</li>
+                    <li><strong><a href="<?php echo admin_url( 'post-new.php?post_type=page' ); ?>">Create Pages</a></strong> - Build pages using the 23 custom blocks</li>
                     <li><strong><a href="<?php echo admin_url( 'nav-menus.php' ); ?>">Manage Menus</a></strong> - Create your navigation structure</li>
-                    <li><strong>Use Gutenberg Blocks</strong> - Access all 21 custom blocks in the block inserter (+) when editing pages</li>
+                    <li><strong>Use Gutenberg Blocks</strong> - Access all 23 custom blocks in the block inserter (+) when editing pages</li>
                 </ul>
             </div>
         <?php endif; ?>
         
         <div class="card">
-            <h2>21 Custom Gutenberg Blocks</h2>
+            <h2>23 Custom Gutenberg Blocks</h2>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px;">
                 <div>
                     <h3>📄 Core Blocks (6)</h3>
@@ -896,7 +896,7 @@ function dthree_setup_page_content() {
                     </ul>
                 </div>
                 <div>
-                    <h3>🧩 Components (10)</h3>
+                    <h3>🧩 Components (12)</h3>
                     <ul style="margin: 10px 0 0 20px;">
                         <li>Tabs</li>
                         <li>Accordion</li>
@@ -908,6 +908,8 @@ function dthree_setup_page_content() {
                         <li>Alerts</li>
                         <li>Icon Boxes</li>
                         <li>Social Share</li>
+                        <li>Data Table</li>
+                        <li>Charts</li>
                     </ul>
                 </div>
             </div>

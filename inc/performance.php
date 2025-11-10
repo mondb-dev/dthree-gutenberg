@@ -92,6 +92,11 @@ add_action( 'wp_head', 'dthree_preload_critical_resources', 2 );
  * Improves FID and TBT (Total Blocking Time)
  */
 function dthree_defer_scripts( $tag, $handle, $src ) {
+    // Don't defer scripts in admin
+    if ( is_admin() ) {
+        return $tag;
+    }
+    
     // Skip jQuery and critical scripts
     $critical_scripts = array( 'jquery', 'jquery-core', 'jquery-migrate' );
     

@@ -252,6 +252,23 @@ function dthree_enqueue_block_editor_assets() {
 add_action( 'enqueue_block_editor_assets', 'dthree_enqueue_block_editor_assets' );
 
 /**
+ * Register custom block category
+ */
+function dthree_block_categories( $categories ) {
+    return array_merge(
+        $categories,
+        array(
+            array(
+                'slug'  => 'dthree-blocks',
+                'title' => __( 'DThree Blocks', 'dthree-gutenberg' ),
+                'icon'  => 'admin-customizer',
+            ),
+        )
+    );
+}
+add_filter( 'block_categories_all', 'dthree_block_categories', 10, 2 );
+
+/**
  * Register widget areas
  */
 function dthree_widgets_init() {

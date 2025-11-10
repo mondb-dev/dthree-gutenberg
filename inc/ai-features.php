@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Add AI-readable meta tags
  */
 function dthree_ai_meta_tags() {
-    if ( is_singular() ) {
+    if ( is_singular() && function_exists( 'dthree_calculate_reading_time' ) ) {
         global $post;
         
         // Content type
@@ -84,7 +84,14 @@ function dthree_ai_json_ld() {
             'datePublished' => get_the_date( 'c' ),
             'dateModified'  => get_the_modified_date( 'c' ),
             'wordCount'     => str_word_count( wp_strip_all_tags( $post->post_content ) ),
-            'timeRequired'  => 'PT' . dthree_calculate_reading_time( $post->post_content ) . 'M',
+        );
+        
+        // Add reading time if function exists
+        if ( function_exists( 'dthree_calculate_reading_time' ) ) {
+            $schema['timeRequired'] = 'PT' . dthree_calculate_reading_time( $post->post_content ) . 'M';
+        }
+        
+        $schema = array_merge( $schema, array(
             'author'        => array(
                 '@type'       => 'Person',
                 'name'        => get_the_author_meta( 'display_name', $post->post_author ),
@@ -96,7 +103,7 @@ function dthree_ai_json_ld() {
                 'name'  => get_bloginfo( 'name' ),
                 'url'   => home_url( '/' ),
             ),
-        );
+        ) );
         
         // Add image
         $image = dthree_get_featured_image_url();
@@ -173,8 +180,12 @@ function dthree_semantic_article_wrapper( $content ) {
             'itemscope'      => '',
             'itemtype'       => 'https://schema.org/Article',
             'data-word-count' => str_word_count( wp_strip_all_tags( $content ) ),
-            'data-reading-time' => dthree_calculate_reading_time( $content ),
         );
+        
+        // Add reading time if function exists
+        if ( function_exists( 'dthree_calculate_reading_time' ) ) {
+            $article_attrs['data-reading-time'] = dthree_calculate_reading_time( $content );
+        }
         
         $attrs_string = '';
         foreach ( $article_attrs as $key => $value ) {
@@ -266,7 +277,7 @@ add_filter( 'robots_txt', 'dthree_robots_txt' );
  * Add custom HTTP headers for AI crawlers
  */
 function dthree_ai_http_headers() {
-    if ( is_singular() ) {
+    if ( is_singular() && function_exists( 'dthree_calculate_reading_time' ) ) {
         header( 'X-Content-Type: article' );
         header( 'X-Reading-Time: ' . dthree_calculate_reading_time( get_post_field( 'post_content', get_the_ID() ) ) . ' minutes' );
         header( 'X-Last-Updated: ' . get_the_modified_date( 'c' ) );
@@ -291,8 +302,10 @@ function dthree_ai_sitemap_additions( $sitemap ) {
 add_filter( 'wp_sitemaps_posts_entry', 'dthree_add_ai_sitemap_data', 10, 2 );
 
 function dthree_add_ai_sitemap_data( $sitemap_entry, $post ) {
-    // Add reading time
-    $sitemap_entry['reading_time'] = dthree_calculate_reading_time( $post->post_content );
+    // Add reading time if function exists
+    if ( function_exists( 'dthree_calculate_reading_time' ) ) {
+        $sitemap_entry['reading_time'] = dthree_calculate_reading_time( $post->post_content );
+    }
     
     // Add content type
     $sitemap_entry['content_type'] = $post->post_type;

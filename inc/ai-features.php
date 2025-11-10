@@ -277,9 +277,19 @@ add_filter( 'robots_txt', 'dthree_robots_txt' );
  * Add custom HTTP headers for AI crawlers
  */
 function dthree_ai_http_headers() {
+    // Don't run in admin or during AJAX/REST requests
+    if ( is_admin() || wp_doing_ajax() || ( defined( 'REST_REQUEST' ) && REST_REQUEST ) ) {
+        return;
+    }
+    
     if ( is_singular() && function_exists( 'dthree_calculate_reading_time' ) ) {
+        $post_id = get_the_ID();
+        if ( ! $post_id ) {
+            return;
+        }
+        
         header( 'X-Content-Type: article' );
-        header( 'X-Reading-Time: ' . dthree_calculate_reading_time( get_post_field( 'post_content', get_the_ID() ) ) . ' minutes' );
+        header( 'X-Reading-Time: ' . dthree_calculate_reading_time( get_post_field( 'post_content', $post_id ) ) . ' minutes' );
         header( 'X-Last-Updated: ' . get_the_modified_date( 'c' ) );
         header( 'X-AI-Friendly: true' );
     }

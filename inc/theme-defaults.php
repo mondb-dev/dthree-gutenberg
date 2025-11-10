@@ -775,10 +775,8 @@ function dthree_setup_default_widgets() {
  */
 function dthree_run_default_setup() {
     dthree_set_default_theme_options();
-    dthree_create_default_pages();
-    dthree_create_default_menus();
-    dthree_create_default_posts();
-    dthree_setup_default_widgets();
+    // Removed: Default pages, menus, posts, and widgets
+    // Theme focuses on Gutenberg block library and components
     
     // Set flag that defaults have been applied
     update_option( 'dthree_defaults_applied', true );
@@ -800,9 +798,9 @@ function dthree_default_setup_admin_notice() {
     <div class="notice notice-info is-dismissible">
         <p>
             <strong>DThree Gutenberg Theme:</strong> 
-            Would you like to set up default content and styling to get started quickly?
+            Would you like to apply default styling and settings to get started?
             <a href="<?php echo esc_url( admin_url( 'admin.php?page=dthree-setup' ) ); ?>" class="button button-primary" style="margin-left: 10px;">
-                Set Up Defaults
+                Apply Defaults
             </a>
         </p>
     </div>
@@ -830,7 +828,7 @@ add_action( 'admin_menu', 'dthree_add_setup_page' );
 function dthree_setup_page_content() {
     if ( isset( $_POST['apply_defaults'] ) && wp_verify_nonce( $_POST['dthree_setup_nonce'], 'dthree_setup' ) ) {
         dthree_run_default_setup();
-        echo '<div class="notice notice-success"><p>Default content and styling have been applied successfully!</p></div>';
+        echo '<div class="notice notice-success"><p>Default theme settings have been applied successfully!</p></div>';
     }
     
     $defaults_applied = get_option( 'dthree_defaults_applied' );
@@ -841,55 +839,90 @@ function dthree_setup_page_content() {
         <?php if ( ! $defaults_applied ) : ?>
             <div class="card">
                 <h2>Quick Start Setup</h2>
-                <p>Apply default styling and content based on Dthree Digital's professional aesthetic. This will:</p>
+                <p>Apply default styling based on Dthree Digital's professional aesthetic. This will:</p>
                 <ul>
                     <li>✅ Set professional color scheme (modern blues and grays)</li>
                     <li>✅ Configure typography (Inter font family)</li>
-                    <li>✅ Create sample pages (Home, About, Services, Contact)</li>
-                    <li>✅ Set up navigation menus</li>
-                    <li>✅ Add sample blog posts</li>
-                    <li>✅ Configure footer widgets</li>
-                    <li>✅ Apply Dthree Digital branding standards</li>
+                    <li>✅ Apply spacing and design system settings</li>
+                    <li>✅ Configure theme customizer defaults</li>
                 </ul>
                 
                 <form method="post" action="">
                     <?php wp_nonce_field( 'dthree_setup', 'dthree_setup_nonce' ); ?>
                     <p>
-                        <input type="submit" name="apply_defaults" class="button button-primary" value="Apply Default Setup">
-                        <span style="margin-left: 10px; color: #666;">This can be undone by customizing individual settings later.</span>
+                        <input type="submit" name="apply_defaults" class="button button-primary" value="Apply Default Settings">
+                        <span style="margin-left: 10px; color: #666;">You can customize all settings later via Appearance → Customize.</span>
                     </p>
                 </form>
             </div>
         <?php else : ?>
             <div class="notice notice-info">
-                <p><strong>Setup Complete!</strong> Default content and styling have been applied.</p>
+                <p><strong>Setup Complete!</strong> Default theme settings have been applied.</p>
             </div>
             
             <div class="card">
                 <h2>Next Steps</h2>
                 <ul>
                     <li><strong><a href="<?php echo admin_url( 'customize.php' ); ?>">Customize Appearance</a></strong> - Adjust colors, fonts, and layout</li>
-                    <li><strong><a href="<?php echo admin_url( 'edit.php?post_type=page' ); ?>">Edit Pages</a></strong> - Update content with your information</li>
-                    <li><strong><a href="<?php echo admin_url( 'nav-menus.php' ); ?>">Manage Menus</a></strong> - Customize navigation</li>
-                    <li><strong><a href="<?php echo admin_url( 'widgets.php' ); ?>">Configure Widgets</a></strong> - Set up sidebar and footer content</li>
+                    <li><strong><a href="<?php echo admin_url( 'post-new.php?post_type=page' ); ?>">Create Pages</a></strong> - Build pages using the 21 custom blocks</li>
+                    <li><strong><a href="<?php echo admin_url( 'nav-menus.php' ); ?>">Manage Menus</a></strong> - Create your navigation structure</li>
+                    <li><strong>Use Gutenberg Blocks</strong> - Access all 21 custom blocks in the block inserter (+) when editing pages</li>
                 </ul>
             </div>
         <?php endif; ?>
         
         <div class="card">
-            <h2>Theme Features</h2>
+            <h2>21 Custom Gutenberg Blocks</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px;">
+                <div>
+                    <h3>📄 Core Blocks (6)</h3>
+                    <ul style="margin: 10px 0 0 20px;">
+                        <li>Hero Section</li>
+                        <li>Features Grid</li>
+                        <li>Call to Action</li>
+                        <li>Team Members</li>
+                        <li>Testimonials</li>
+                        <li>Contact Form</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>🎠 Sliders (5)</h3>
+                    <ul style="margin: 10px 0 0 20px;">
+                        <li>Image Slider</li>
+                        <li>Content Slider</li>
+                        <li>Logo Slider</li>
+                        <li>Card Slider</li>
+                        <li>Testimonial Slider</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>🧩 Components (10)</h3>
+                    <ul style="margin: 10px 0 0 20px;">
+                        <li>Tabs</li>
+                        <li>Accordion</li>
+                        <li>Pricing Tables</li>
+                        <li>Progress Bars</li>
+                        <li>Timeline</li>
+                        <li>Modal</li>
+                        <li>Video Player</li>
+                        <li>Alerts</li>
+                        <li>Icon Boxes</li>
+                        <li>Social Share</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2>Additional Features</h2>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px;">
                 <div>
                     <h3>🎨 Design System</h3>
                     <p>Professional color schemes, typography, and spacing based on modern design principles.</p>
                 </div>
                 <div>
-                    <h3>📱 21 Custom Blocks</h3>
-                    <p>Hero sections, sliders, features, pricing tables, testimonials, and more.</p>
-                </div>
-                <div>
                     <h3>🚀 Performance Optimized</h3>
-                    <p>Fast loading times with optimized CSS, lazy loading, and efficient code.</p>
+                    <p>Core Web Vitals compliant with lazy loading, script deferral, and optimized assets.</p>
                 </div>
                 <div>
                     <h3>🔍 SEO Ready</h3>
@@ -900,8 +933,12 @@ function dthree_setup_page_content() {
                     <p>Optimized for AI crawlers with enhanced content structure and metadata.</p>
                 </div>
                 <div>
-                    <h3>📊 Analytics Ready</h3>
-                    <p>Google Analytics integration and performance monitoring capabilities.</p>
+                    <h3>� Import/Export</h3>
+                    <p>Save and share theme settings across installations.</p>
+                </div>
+                <div>
+                    <h3>🖼️ Lightbox</h3>
+                    <p>Beautiful image galleries with automatic lightbox functionality.</p>
                 </div>
             </div>
         </div>

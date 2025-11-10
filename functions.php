@@ -469,3 +469,8 @@ require_once DTHREE_THEME_DIR . '/inc/import-export.php';
  * Include performance optimization
  */
 require_once DTHREE_THEME_DIR . '/inc/performance.php';
+
+/**
+ * Include conditional asset loading
+ */
+require_once DTHREE_THEME_DIR . '/inc/conditional-assets.php';

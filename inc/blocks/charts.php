@@ -152,15 +152,6 @@ function dthree_render_charts_block( $attributes ) {
     $output .= '</div>';
     $output .= '</div>';
     
-    // Enqueue Chart.js from CDN
-    wp_enqueue_script(
-        'chartjs',
-        'https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js',
-        array(),
-        '4.4.0',
-        true
-    );
-    
     // Add inline script to render chart
     $output .= "
     <script>
@@ -168,6 +159,8 @@ function dthree_render_charts_block( $attributes ) {
         function initChart() {
             if (typeof Chart === 'undefined') {
                 setTimeout(initChart, 100);
+                return;
+            }
                 return;
             }
             
@@ -190,11 +183,10 @@ function dthree_render_charts_block( $attributes ) {
 }
 
 /**
- * Enqueue Chart.js library
+ * Conditionally enqueue Chart.js only when block is used
  */
-function dthree_enqueue_chartjs() {
-    // Only enqueue if we're not in the editor (block editor handles its own scripts)
-    if ( ! is_admin() ) {
+function dthree_enqueue_chartjs_conditionally() {
+    if ( ! is_admin() && has_block( 'dthree/charts' ) ) {
         wp_enqueue_script(
             'chartjs',
             'https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js',
@@ -204,4 +196,4 @@ function dthree_enqueue_chartjs() {
         );
     }
 }
-add_action( 'wp_enqueue_scripts', 'dthree_enqueue_chartjs' );
+add_action( 'wp_enqueue_scripts', 'dthree_enqueue_chartjs_conditionally' );

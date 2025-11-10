@@ -125,34 +125,127 @@ if ( isset( $_POST['submit'] ) && check_admin_referer( 'dthree_design_system_sav
                             <div class="dthree-typography-controls">
                                 <h3><?php esc_html_e( 'Font Families', 'dthree-gutenberg' ); ?></h3>
                                 
+                                <!-- Primary Font -->
                                 <div class="font-family-group">
                                     <h4><?php esc_html_e( 'Primary Font', 'dthree-gutenberg' ); ?></h4>
+                                    
+                                    <label><?php esc_html_e( 'Font Source', 'dthree-gutenberg' ); ?></label>
+                                    <div class="font-source-selector">
+                                        <label>
+                                            <input type="radio" name="dthree_design_system[typography][font_family_primary][source]" value="system" 
+                                                   <?php checked( $settings['typography']['font_family_primary']['source'] ?? 'google', 'system' ); ?> />
+                                            <?php esc_html_e( 'System Font', 'dthree-gutenberg' ); ?>
+                                        </label>
+                                        <label>
+                                            <input type="radio" name="dthree_design_system[typography][font_family_primary][source]" value="google" 
+                                                   <?php checked( $settings['typography']['font_family_primary']['source'] ?? 'google', 'google' ); ?> />
+                                            <?php esc_html_e( 'Google Fonts', 'dthree-gutenberg' ); ?>
+                                        </label>
+                                        <label>
+                                            <input type="radio" name="dthree_design_system[typography][font_family_primary][source]" value="custom" 
+                                                   <?php checked( $settings['typography']['font_family_primary']['source'] ?? 'google', 'custom' ); ?> />
+                                            <?php esc_html_e( 'Custom Upload', 'dthree-gutenberg' ); ?>
+                                        </label>
+                                    </div>
+                                    
                                     <label><?php esc_html_e( 'Font Family', 'dthree-gutenberg' ); ?></label>
-                                    <input type="text" 
-                                           name="dthree_design_system[typography][font_family_primary][family]"
-                                           value="<?php echo esc_attr( $settings['typography']['font_family_primary']['family'] ); ?>"
-                                           placeholder="Inter" />
+                                    <div class="font-family-input-group">
+                                        <input type="text" 
+                                               name="dthree_design_system[typography][font_family_primary][family]"
+                                               value="<?php echo esc_attr( $settings['typography']['font_family_primary']['family'] ); ?>"
+                                               placeholder="Inter" 
+                                               class="font-family-input" />
+                                        <button type="button" class="button google-font-search" data-target="font_family_primary">
+                                            <?php esc_html_e( 'Browse Google Fonts', 'dthree-gutenberg' ); ?>
+                                        </button>
+                                        <button type="button" class="button custom-font-upload" data-target="font_family_primary">
+                                            <?php esc_html_e( 'Upload Custom Font', 'dthree-gutenberg' ); ?>
+                                        </button>
+                                    </div>
                                     
                                     <label><?php esc_html_e( 'Fallbacks', 'dthree-gutenberg' ); ?></label>
                                     <input type="text" 
                                            name="dthree_design_system[typography][font_family_primary][fallbacks]"
                                            value="<?php echo esc_attr( $settings['typography']['font_family_primary']['fallbacks'] ); ?>"
                                            placeholder="system-ui, -apple-system, sans-serif" />
+                                    
+                                    <label><?php esc_html_e( 'Font Weights', 'dthree-gutenberg' ); ?></label>
+                                    <div class="font-weights-selector">
+                                        <?php
+                                        $weights = array( 100, 200, 300, 400, 500, 600, 700, 800, 900 );
+                                        $selected_weights = $settings['typography']['font_family_primary']['weights'] ?? array( 400, 700 );
+                                        foreach ( $weights as $weight ) :
+                                        ?>
+                                        <label class="weight-checkbox">
+                                            <input type="checkbox" 
+                                                   name="dthree_design_system[typography][font_family_primary][weights][]" 
+                                                   value="<?php echo esc_attr( $weight ); ?>"
+                                                   <?php checked( in_array( $weight, $selected_weights ) ); ?> />
+                                            <?php echo esc_html( $weight ); ?>
+                                        </label>
+                                        <?php endforeach; ?>
+                                    </div>
                                 </div>
 
+                                <!-- Secondary Font -->
                                 <div class="font-family-group">
                                     <h4><?php esc_html_e( 'Secondary Font', 'dthree-gutenberg' ); ?></h4>
+                                    
+                                    <label><?php esc_html_e( 'Font Source', 'dthree-gutenberg' ); ?></label>
+                                    <div class="font-source-selector">
+                                        <label>
+                                            <input type="radio" name="dthree_design_system[typography][font_family_secondary][source]" value="system" 
+                                                   <?php checked( $settings['typography']['font_family_secondary']['source'] ?? 'system', 'system' ); ?> />
+                                            <?php esc_html_e( 'System Font', 'dthree-gutenberg' ); ?>
+                                        </label>
+                                        <label>
+                                            <input type="radio" name="dthree_design_system[typography][font_family_secondary][source]" value="google" 
+                                                   <?php checked( $settings['typography']['font_family_secondary']['source'] ?? 'system', 'google' ); ?> />
+                                            <?php esc_html_e( 'Google Fonts', 'dthree-gutenberg' ); ?>
+                                        </label>
+                                        <label>
+                                            <input type="radio" name="dthree_design_system[typography][font_family_secondary][source]" value="custom" 
+                                                   <?php checked( $settings['typography']['font_family_secondary'][' source'] ?? 'system', 'custom' ); ?> />
+                                            <?php esc_html_e( 'Custom Upload', 'dthree-gutenberg' ); ?>
+                                        </label>
+                                    </div>
+                                    
                                     <label><?php esc_html_e( 'Font Family', 'dthree-gutenberg' ); ?></label>
-                                    <input type="text" 
-                                           name="dthree_design_system[typography][font_family_secondary][family]"
-                                           value="<?php echo esc_attr( $settings['typography']['font_family_secondary']['family'] ); ?>"
-                                           placeholder="Georgia" />
+                                    <div class="font-family-input-group">
+                                        <input type="text" 
+                                               name="dthree_design_system[typography][font_family_secondary][family]"
+                                               value="<?php echo esc_attr( $settings['typography']['font_family_secondary']['family'] ); ?>"
+                                               placeholder="Georgia" 
+                                               class="font-family-input" />
+                                        <button type="button" class="button google-font-search" data-target="font_family_secondary">
+                                            <?php esc_html_e( 'Browse Google Fonts', 'dthree-gutenberg' ); ?>
+                                        </button>
+                                        <button type="button" class="button custom-font-upload" data-target="font_family_secondary">
+                                            <?php esc_html_e( 'Upload Custom Font', 'dthree-gutenberg' ); ?>
+                                        </button>
+                                    </div>
                                     
                                     <label><?php esc_html_e( 'Fallbacks', 'dthree-gutenberg' ); ?></label>
                                     <input type="text" 
                                            name="dthree_design_system[typography][font_family_secondary][fallbacks]"
                                            value="<?php echo esc_attr( $settings['typography']['font_family_secondary']['fallbacks'] ); ?>"
                                            placeholder="serif" />
+                                    
+                                    <label><?php esc_html_e( 'Font Weights', 'dthree-gutenberg' ); ?></label>
+                                    <div class="font-weights-selector">
+                                        <?php
+                                        $secondary_weights = $settings['typography']['font_family_secondary']['weights'] ?? array( 400, 700 );
+                                        foreach ( $weights as $weight ) :
+                                        ?>
+                                        <label class="weight-checkbox">
+                                            <input type="checkbox" 
+                                                   name="dthree_design_system[typography][font_family_secondary][weights][]" 
+                                                   value="<?php echo esc_attr( $weight ); ?>"
+                                                   <?php checked( in_array( $weight, $secondary_weights ) ); ?> />
+                                            <?php echo esc_html( $weight ); ?>
+                                        </label>
+                                        <?php endforeach; ?>
+                                    </div>
                                 </div>
 
                                 <h3><?php esc_html_e( 'Font Sizes', 'dthree-gutenberg' ); ?></h3>
@@ -184,6 +277,44 @@ if ( isset( $_POST['submit'] ) && check_admin_referer( 'dthree_design_system_sav
                                     </div>
                                     <?php endforeach; ?>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Google Fonts Modal -->
+                    <div id="google-fonts-modal" class="dthree-modal" style="display: none;">
+                        <div class="dthree-modal-content">
+                            <div class="dthree-modal-header">
+                                <h3><?php esc_html_e( 'Browse Google Fonts', 'dthree-gutenberg' ); ?></h3>
+                                <button type="button" class="dthree-modal-close">&times;</button>
+                            </div>
+                            <div class="dthree-modal-body">
+                                <input type="text" id="google-fonts-search" placeholder="<?php esc_attr_e( 'Search fonts...', 'dthree-gutenberg' ); ?>" />
+                                <div id="google-fonts-list" class="fonts-grid"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Custom Font Upload Modal -->
+                    <div id="custom-font-modal" class="dthree-modal" style="display: none;">
+                        <div class="dthree-modal-content">
+                            <div class="dthree-modal-header">
+                                <h3><?php esc_html_e( 'Upload Custom Font', 'dthree-gutenberg' ); ?></h3>
+                                <button type="button" class="dthree-modal-close">&times;</button>
+                            </div>
+                            <div class="dthree-modal-body">
+                                <p class="description"><?php esc_html_e( 'Upload font files in .woff, .woff2, .ttf, .otf, or .eot format.', 'dthree-gutenberg' ); ?></p>
+                                <label><?php esc_html_e( 'Font Name', 'dthree-gutenberg' ); ?></label>
+                                <input type="text" id="custom-font-name" placeholder="<?php esc_attr_e( 'My Custom Font', 'dthree-gutenberg' ); ?>" />
+                                
+                                <label><?php esc_html_e( 'Upload Font Files', 'dthree-gutenberg' ); ?></label>
+                                <input type="file" id="custom-font-file" accept=".woff,.woff2,.ttf,.otf,.eot" multiple />
+                                
+                                <div id="custom-font-files-list"></div>
+                                
+                                <button type="button" class="button button-primary" id="upload-font-btn">
+                                    <?php esc_html_e( 'Upload Font', 'dthree-gutenberg' ); ?>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -248,7 +379,7 @@ if ( isset( $_POST['submit'] ) && check_admin_referer( 'dthree_design_system_sav
                     <div class="tab-content" id="components">
                         <div class="dthree-section">
                             <h2><?php esc_html_e( 'Component Library', 'dthree-gutenberg' ); ?></h2>
-                            <p class="description"><?php esc_html_e( 'Configure button styles and other component variations.', 'dthree-gutenberg' ); ?></p>
+                            <p class="description"><?php esc_html_e( 'Configure button styles and other component variations with full state control.', 'dthree-gutenberg' ); ?></p>
                             
                             <h3><?php esc_html_e( 'Button Variations', 'dthree-gutenberg' ); ?></h3>
                             <div class="dthree-component-builder">
@@ -256,27 +387,127 @@ if ( isset( $_POST['submit'] ) && check_admin_referer( 'dthree_design_system_sav
                                 <div class="component-variation">
                                     <h4><?php echo esc_html( ucfirst( $button_key ) . ' Button' ); ?></h4>
                                     
+                                    <div class="button-state-tabs">
+                                        <button type="button" class="state-tab active" data-state="default">Default</button>
+                                        <button type="button" class="state-tab" data-state="hover">Hover</button>
+                                        <button type="button" class="state-tab" data-state="active">Active</button>
+                                        <button type="button" class="state-tab" data-state="focus">Focus</button>
+                                        <button type="button" class="state-tab" data-state="disabled">Disabled</button>
+                                    </div>
+                                    
                                     <div class="component-controls">
-                                        <?php foreach ( $button_settings as $property => $value ) : ?>
-                                        <div class="control-group">
-                                            <label><?php echo esc_html( ucfirst( str_replace( '_', ' ', $property ) ) ); ?></label>
-                                            <?php if ( strpos( $property, 'color' ) !== false || $property === 'background' || $property === 'border' ) : ?>
-                                                <input type="text" 
-                                                       name="dthree_design_system[buttons][<?php echo esc_attr( $button_key ); ?>][<?php echo esc_attr( $property ); ?>]"
-                                                       value="<?php echo esc_attr( $value ); ?>"
-                                                       class="color-picker" />
-                                            <?php else : ?>
-                                                <input type="text" 
-                                                       name="dthree_design_system[buttons][<?php echo esc_attr( $button_key ); ?>][<?php echo esc_attr( $property ); ?>]"
-                                                       value="<?php echo esc_attr( $value ); ?>" />
-                                            <?php endif; ?>
+                                        <!-- Default State -->
+                                        <div class="state-controls active" data-state="default">
+                                            <div class="control-group">
+                                                <label><?php esc_html_e( 'Background Color', 'dthree-gutenberg' ); ?></label>
+                                                <input type="text" name="dthree_design_system[buttons][<?php echo esc_attr( $button_key ); ?>][background]" value="<?php echo esc_attr( $button_settings['background'] ?? '' ); ?>" class="color-picker" />
+                                            </div>
+                                            <div class="control-group">
+                                                <label><?php esc_html_e( 'Text Color', 'dthree-gutenberg' ); ?></label>
+                                                <input type="text" name="dthree_design_system[buttons][<?php echo esc_attr( $button_key ); ?>][color]" value="<?php echo esc_attr( $button_settings['color'] ?? '' ); ?>" class="color-picker" />
+                                            </div>
+                                            <div class="control-group">
+                                                <label><?php esc_html_e( 'Border', 'dthree-gutenberg' ); ?></label>
+                                                <input type="text" name="dthree_design_system[buttons][<?php echo esc_attr( $button_key ); ?>][border]" value="<?php echo esc_attr( $button_settings['border'] ?? '' ); ?>" class="color-picker" />
+                                            </div>
+                                            <div class="control-group">
+                                                <label><?php esc_html_e( 'Text Transform', 'dthree-gutenberg' ); ?></label>
+                                                <select name="dthree_design_system[buttons][<?php echo esc_attr( $button_key ); ?>][text_transform]">
+                                                    <option value="none" <?php selected( $button_settings['text_transform'] ?? 'none', 'none' ); ?>><?php esc_html_e( 'Normal', 'dthree-gutenberg' ); ?></option>
+                                                    <option value="uppercase" <?php selected( $button_settings['text_transform'] ?? 'none', 'uppercase' ); ?>><?php esc_html_e( 'UPPERCASE', 'dthree-gutenberg' ); ?></option>
+                                                    <option value="lowercase" <?php selected( $button_settings['text_transform'] ?? 'none', 'lowercase' ); ?>><?php esc_html_e( 'lowercase', 'dthree-gutenberg' ); ?></option>
+                                                    <option value="capitalize" <?php selected( $button_settings['text_transform'] ?? 'none', 'capitalize' ); ?>><?php esc_html_e( 'Capitalize', 'dthree-gutenberg' ); ?></option>
+                                                </select>
+                                            </div>
+                                            <div class="control-group">
+                                                <label><?php esc_html_e( 'Font Weight', 'dthree-gutenberg' ); ?></label>
+                                                <input type="text" name="dthree_design_system[buttons][<?php echo esc_attr( $button_key ); ?>][font_weight]" value="<?php echo esc_attr( $button_settings['font_weight'] ?? '500' ); ?>" />
+                                            </div>
+                                            <div class="control-group">
+                                                <label><?php esc_html_e( 'Padding', 'dthree-gutenberg' ); ?></label>
+                                                <input type="text" name="dthree_design_system[buttons][<?php echo esc_attr( $button_key ); ?>][padding]" value="<?php echo esc_attr( $button_settings['padding'] ?? '' ); ?>" />
+                                            </div>
+                                            <div class="control-group">
+                                                <label><?php esc_html_e( 'Border Radius', 'dthree-gutenberg' ); ?></label>
+                                                <input type="text" name="dthree_design_system[buttons][<?php echo esc_attr( $button_key ); ?>][border_radius]" value="<?php echo esc_attr( $button_settings['border_radius'] ?? '' ); ?>" />
+                                            </div>
                                         </div>
-                                        <?php endforeach; ?>
+                                        
+                                        <!-- Hover State -->
+                                        <div class="state-controls" data-state="hover">
+                                            <div class="control-group">
+                                                <label><?php esc_html_e( 'Hover Background', 'dthree-gutenberg' ); ?></label>
+                                                <input type="text" name="dthree_design_system[buttons][<?php echo esc_attr( $button_key ); ?>][hover_background]" value="<?php echo esc_attr( $button_settings['hover_background'] ?? '' ); ?>" class="color-picker" />
+                                            </div>
+                                            <div class="control-group">
+                                                <label><?php esc_html_e( 'Hover Text Color', 'dthree-gutenberg' ); ?></label>
+                                                <input type="text" name="dthree_design_system[buttons][<?php echo esc_attr( $button_key ); ?>][hover_color]" value="<?php echo esc_attr( $button_settings['hover_color'] ?? '' ); ?>" class="color-picker" />
+                                            </div>
+                                            <div class="control-group">
+                                                <label><?php esc_html_e( 'Hover Border', 'dthree-gutenberg' ); ?></label>
+                                                <input type="text" name="dthree_design_system[buttons][<?php echo esc_attr( $button_key ); ?>][hover_border]" value="<?php echo esc_attr( $button_settings['hover_border'] ?? '' ); ?>" class="color-picker" />
+                                            </div>
+                                            <div class="control-group">
+                                                <label><?php esc_html_e( 'Hover Transform', 'dthree-gutenberg' ); ?></label>
+                                                <input type="text" name="dthree_design_system[buttons][<?php echo esc_attr( $button_key ); ?>][hover_transform]" value="<?php echo esc_attr( $button_settings['hover_transform'] ?? '' ); ?>" placeholder="translateY(-1px)" />
+                                            </div>
+                                            <div class="control-group">
+                                                <label><?php esc_html_e( 'Hover Shadow', 'dthree-gutenberg' ); ?></label>
+                                                <input type="text" name="dthree_design_system[buttons][<?php echo esc_attr( $button_key ); ?>][hover_shadow]" value="<?php echo esc_attr( $button_settings['hover_shadow'] ?? '' ); ?>" placeholder="0 4px 6px rgba(0,0,0,0.1)" />
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Active State -->
+                                        <div class="state-controls" data-state="active">
+                                            <div class="control-group">
+                                                <label><?php esc_html_e( 'Active Background', 'dthree-gutenberg' ); ?></label>
+                                                <input type="text" name="dthree_design_system[buttons][<?php echo esc_attr( $button_key ); ?>][active_background]" value="<?php echo esc_attr( $button_settings['active_background'] ?? '' ); ?>" class="color-picker" />
+                                            </div>
+                                            <div class="control-group">
+                                                <label><?php esc_html_e( 'Active Text Color', 'dthree-gutenberg' ); ?></label>
+                                                <input type="text" name="dthree_design_system[buttons][<?php echo esc_attr( $button_key ); ?>][active_color]" value="<?php echo esc_attr( $button_settings['active_color'] ?? '' ); ?>" class="color-picker" />
+                                            </div>
+                                            <div class="control-group">
+                                                <label><?php esc_html_e( 'Active Border', 'dthree-gutenberg' ); ?></label>
+                                                <input type="text" name="dthree_design_system[buttons][<?php echo esc_attr( $button_key ); ?>][active_border]" value="<?php echo esc_attr( $button_settings['active_border'] ?? '' ); ?>" class="color-picker" />
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Focus State -->
+                                        <div class="state-controls" data-state="focus">
+                                            <div class="control-group">
+                                                <label><?php esc_html_e( 'Focus Outline', 'dthree-gutenberg' ); ?></label>
+                                                <input type="text" name="dthree_design_system[buttons][<?php echo esc_attr( $button_key ); ?>][focus_outline]" value="<?php echo esc_attr( $button_settings['focus_outline'] ?? '' ); ?>" placeholder="0 0 0 0.25rem rgba(13,110,253,0.25)" />
+                                            </div>
+                                            <div class="control-group">
+                                                <label><?php esc_html_e( 'Focus Border', 'dthree-gutenberg' ); ?></label>
+                                                <input type="text" name="dthree_design_system[buttons][<?php echo esc_attr( $button_key ); ?>][focus_border]" value="<?php echo esc_attr( $button_settings['focus_border'] ?? '' ); ?>" class="color-picker" />
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Disabled State -->
+                                        <div class="state-controls" data-state="disabled">
+                                            <div class="control-group">
+                                                <label><?php esc_html_e( 'Disabled Background', 'dthree-gutenberg' ); ?></label>
+                                                <input type="text" name="dthree_design_system[buttons][<?php echo esc_attr( $button_key ); ?>][disabled_background]" value="<?php echo esc_attr( $button_settings['disabled_background'] ?? '' ); ?>" class="color-picker" />
+                                            </div>
+                                            <div class="control-group">
+                                                <label><?php esc_html_e( 'Disabled Text Color', 'dthree-gutenberg' ); ?></label>
+                                                <input type="text" name="dthree_design_system[buttons][<?php echo esc_attr( $button_key ); ?>][disabled_color]" value="<?php echo esc_attr( $button_settings['disabled_color'] ?? '' ); ?>" class="color-picker" />
+                                            </div>
+                                            <div class="control-group">
+                                                <label><?php esc_html_e( 'Disabled Opacity', 'dthree-gutenberg' ); ?></label>
+                                                <input type="number" step="0.1" min="0" max="1" name="dthree_design_system[buttons][<?php echo esc_attr( $button_key ); ?>][disabled_opacity]" value="<?php echo esc_attr( $button_settings['disabled_opacity'] ?? '0.65' ); ?>" />
+                                            </div>
+                                        </div>
                                     </div>
                                     
                                     <div class="component-preview">
                                         <button type="button" class="btn-preview btn-<?php echo esc_attr( $button_key ); ?>">
                                             <?php echo esc_html( ucfirst( $button_key ) . ' Button' ); ?>
+                                        </button>
+                                        <button type="button" class="btn-preview btn-<?php echo esc_attr( $button_key ); ?>" disabled>
+                                            <?php echo esc_html_e( 'Disabled', 'dthree-gutenberg' ); ?>
                                         </button>
                                     </div>
                                 </div>

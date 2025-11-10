@@ -18,6 +18,7 @@
         initializeExportImport();
         initializeLivePreview();
         initializeFormWatchers();
+        initializeButtonStateTabs();
     });
 
     /**
@@ -651,6 +652,27 @@
                 }
             });
         }
+    }
+
+    /**
+     * Initialize button state tabs
+     */
+    function initializeButtonStateTabs() {
+        $(document).on('click', '.state-tab', function(e) {
+            e.preventDefault();
+            
+            const $tab = $(this);
+            const state = $tab.data('state');
+            const $variation = $tab.closest('.component-variation');
+            
+            // Update active tab
+            $variation.find('.state-tab').removeClass('active');
+            $tab.addClass('active');
+            
+            // Update visible controls
+            $variation.find('.state-controls').removeClass('active');
+            $variation.find(`.state-controls[data-state="${state}"]`).addClass('active');
+        });
     }
 
     /**

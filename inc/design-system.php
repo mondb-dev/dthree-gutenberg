@@ -35,6 +35,8 @@ class DThree_Design_System {
         add_action( 'wp_ajax_dthree_preview_changes', array( $this, 'ajax_preview_changes' ) );
         add_action( 'wp_ajax_dthree_export_design_system', array( $this, 'ajax_export_design_system' ) );
         add_action( 'wp_ajax_dthree_import_design_system', array( $this, 'ajax_import_design_system' ) );
+        add_action( 'wp_ajax_dthree_search_google_fonts', array( $this, 'ajax_search_google_fonts' ) );
+        add_action( 'wp_ajax_dthree_upload_custom_font', array( $this, 'ajax_upload_custom_font' ) );
     }
     
     /**
@@ -161,13 +163,19 @@ class DThree_Design_System {
             'typography' => array(
                 'font_family_primary' => array(
                     'family' => 'Inter',
+                    'source' => 'google', // 'google', 'custom', or 'system'
+                    'google_url' => '', // Auto-generated Google Fonts URL
                     'fallbacks' => 'system-ui, -apple-system, "Segoe UI", Roboto, sans-serif',
-                    'weights' => array( 300, 400, 500, 600, 700 )
+                    'weights' => array( 300, 400, 500, 600, 700 ),
+                    'custom_files' => array(), // Array of uploaded font file paths
                 ),
                 'font_family_secondary' => array(
                     'family' => 'Georgia',
+                    'source' => 'system',
+                    'google_url' => '',
                     'fallbacks' => 'serif',
-                    'weights' => array( 400, 700 )
+                    'weights' => array( 400, 700 ),
+                    'custom_files' => array(),
                 ),
                 'font_sizes' => array(
                     'xs' => '0.75rem',    // 12px
@@ -231,45 +239,132 @@ class DThree_Design_System {
             // Button Components
             'buttons' => array(
                 'primary' => array(
+                    // Default state
                     'background' => 'var(--dthree-color-primary)',
                     'color' => '#ffffff',
                     'border' => 'var(--dthree-color-primary)',
-                    'hover_background' => 'var(--dthree-color-primary-dark)',
                     'padding' => 'var(--dthree-space-sm) var(--dthree-space-lg)',
                     'border_radius' => 'var(--dthree-radius-md)',
                     'font_weight' => '500',
+                    'text_transform' => 'none',
                     'transition' => 'all 0.2s ease-in-out',
+                    // Hover state
+                    'hover_background' => '#0b5ed7',
+                    'hover_color' => '#ffffff',
+                    'hover_border' => '#0b5ed7',
+                    'hover_transform' => 'translateY(-1px)',
+                    'hover_shadow' => '0 4px 6px rgba(0, 0, 0, 0.1)',
+                    // Active state
+                    'active_background' => '#0a58ca',
+                    'active_color' => '#ffffff',
+                    'active_border' => '#0a58ca',
+                    'active_transform' => 'translateY(0)',
+                    'active_shadow' => '0 2px 4px rgba(0, 0, 0, 0.1)',
+                    // Focus state
+                    'focus_outline' => '0 0 0 0.25rem rgba(13, 110, 253, 0.25)',
+                    'focus_border' => 'var(--dthree-color-primary)',
+                    // Disabled state
+                    'disabled_background' => '#6c757d',
+                    'disabled_color' => '#ffffff',
+                    'disabled_border' => '#6c757d',
+                    'disabled_opacity' => '0.65',
+                    'disabled_cursor' => 'not-allowed',
                 ),
                 'secondary' => array(
+                    // Default state
                     'background' => 'transparent',
                     'color' => 'var(--dthree-color-primary)',
                     'border' => 'var(--dthree-color-primary)',
+                    'padding' => 'var(--dthree-space-sm) var(--dthree-space-lg)',
+                    'border_radius' => 'var(--dthree-radius-md)',
+                    'font_weight' => '500',
+                    'text_transform' => 'none',
+                    'transition' => 'all 0.2s ease-in-out',
+                    // Hover state
                     'hover_background' => 'var(--dthree-color-primary)',
                     'hover_color' => '#ffffff',
-                    'padding' => 'var(--dthree-space-sm) var(--dthree-space-lg)',
-                    'border_radius' => 'var(--dthree-radius-md)',
-                    'font_weight' => '500',
-                    'transition' => 'all 0.2s ease-in-out',
+                    'hover_border' => 'var(--dthree-color-primary)',
+                    'hover_transform' => 'translateY(-1px)',
+                    'hover_shadow' => '0 4px 6px rgba(0, 0, 0, 0.1)',
+                    // Active state
+                    'active_background' => '#0a58ca',
+                    'active_color' => '#ffffff',
+                    'active_border' => '#0a58ca',
+                    'active_transform' => 'translateY(0)',
+                    'active_shadow' => '0 2px 4px rgba(0, 0, 0, 0.1)',
+                    // Focus state
+                    'focus_outline' => '0 0 0 0.25rem rgba(13, 110, 253, 0.25)',
+                    'focus_border' => 'var(--dthree-color-primary)',
+                    // Disabled state
+                    'disabled_background' => 'transparent',
+                    'disabled_color' => '#6c757d',
+                    'disabled_border' => '#6c757d',
+                    'disabled_opacity' => '0.65',
+                    'disabled_cursor' => 'not-allowed',
                 ),
                 'outline' => array(
+                    // Default state
                     'background' => 'transparent',
                     'color' => 'var(--dthree-color-dark)',
-                    'border' => '2px solid var(--dthree-color-light)',
-                    'hover_background' => 'var(--dthree-color-light)',
+                    'border' => '2px solid var(--dthree-color-dark)',
                     'padding' => 'var(--dthree-space-sm) var(--dthree-space-lg)',
                     'border_radius' => 'var(--dthree-radius-md)',
                     'font_weight' => '500',
+                    'text_transform' => 'none',
                     'transition' => 'all 0.2s ease-in-out',
+                    // Hover state
+                    'hover_background' => 'var(--dthree-color-dark)',
+                    'hover_color' => '#ffffff',
+                    'hover_border' => 'var(--dthree-color-dark)',
+                    'hover_transform' => 'translateY(-1px)',
+                    'hover_shadow' => '0 4px 6px rgba(0, 0, 0, 0.1)',
+                    // Active state
+                    'active_background' => '#1a1d20',
+                    'active_color' => '#ffffff',
+                    'active_border' => '#1a1d20',
+                    'active_transform' => 'translateY(0)',
+                    'active_shadow' => '0 2px 4px rgba(0, 0, 0, 0.1)',
+                    // Focus state
+                    'focus_outline' => '0 0 0 0.25rem rgba(33, 37, 41, 0.25)',
+                    'focus_border' => 'var(--dthree-color-dark)',
+                    // Disabled state
+                    'disabled_background' => 'transparent',
+                    'disabled_color' => '#6c757d',
+                    'disabled_border' => '#6c757d',
+                    'disabled_opacity' => '0.65',
+                    'disabled_cursor' => 'not-allowed',
                 ),
                 'ghost' => array(
+                    // Default state
                     'background' => 'transparent',
                     'color' => 'var(--dthree-color-primary)',
                     'border' => 'transparent',
-                    'hover_background' => 'rgba(13, 110, 253, 0.1)',
                     'padding' => 'var(--dthree-space-sm) var(--dthree-space-lg)',
                     'border_radius' => 'var(--dthree-radius-md)',
                     'font_weight' => '500',
+                    'text_transform' => 'none',
                     'transition' => 'all 0.2s ease-in-out',
+                    // Hover state
+                    'hover_background' => 'rgba(13, 110, 253, 0.1)',
+                    'hover_color' => 'var(--dthree-color-primary)',
+                    'hover_border' => 'transparent',
+                    'hover_transform' => 'translateY(-1px)',
+                    'hover_shadow' => 'none',
+                    // Active state
+                    'active_background' => 'rgba(13, 110, 253, 0.2)',
+                    'active_color' => 'var(--dthree-color-primary)',
+                    'active_border' => 'transparent',
+                    'active_transform' => 'translateY(0)',
+                    'active_shadow' => 'none',
+                    // Focus state
+                    'focus_outline' => '0 0 0 0.25rem rgba(13, 110, 253, 0.25)',
+                    'focus_border' => 'transparent',
+                    // Disabled state
+                    'disabled_background' => 'transparent',
+                    'disabled_color' => '#6c757d',
+                    'disabled_border' => 'transparent',
+                    'disabled_opacity' => '0.65',
+                    'disabled_cursor' => 'not-allowed',
                 ),
             ),
             
@@ -707,6 +802,106 @@ class DThree_Design_System {
             wp_send_json_success( array( 'message' => 'Design system imported successfully!' ) );
         } else {
             wp_send_json_error( array( 'message' => 'Invalid import data' ) );
+        }
+    }
+    
+    /**
+     * AJAX handler for Google Fonts search
+     */
+    public function ajax_search_google_fonts() {
+        // Verify nonce
+        if ( ! check_ajax_referer( 'dthree_design_system_nonce', 'nonce', false ) ) {
+            wp_die( 'Security check failed' );
+        }
+        
+        // Check permissions
+        if ( ! current_user_can( 'edit_theme_options' ) ) {
+            wp_die( 'Insufficient permissions' );
+        }
+        
+        $search_term = isset( $_POST['search'] ) ? sanitize_text_field( $_POST['search'] ) : '';
+        
+        // Popular Google Fonts list (top 100)
+        $google_fonts = array(
+            'Roboto', 'Open Sans', 'Lato', 'Montserrat', 'Oswald', 'Source Sans Pro', 
+            'Raleway', 'Poppins', 'Merriweather', 'PT Sans', 'Ubuntu', 'Nunito',
+            'Playfair Display', 'Rubik', 'Lora', 'Inter', 'Mukta', 'Work Sans',
+            'Noto Sans', 'Fira Sans', 'Quicksand', 'Karla', 'Barlow', 'Manrope',
+            'DM Sans', 'Plus Jakarta Sans', 'Space Grotesk', 'Epilogue', 'Outfit',
+            'Sora', 'Urbanist', 'Lexend', 'Red Hat Display', 'Archivo', 'IBM Plex Sans',
+            'Josefin Sans', 'Inconsolata', 'Oxygen', 'Titillium Web', 'Cabin',
+            'Dosis', 'Hind', 'Bitter', 'Arimo', 'Fjalla One', 'Anton', 'Dancing Script',
+            'Pacifico', 'Bebas Neue', 'Satisfy', 'Crimson Text', 'Libre Baskerville',
+            'Shadows Into Light', 'Cookie', 'Lobster', 'Great Vibes', 'Permanent Marker',
+        );
+        
+        // Filter by search term
+        if ( ! empty( $search_term ) ) {
+            $google_fonts = array_filter( $google_fonts, function( $font ) use ( $search_term ) {
+                return stripos( $font, $search_term ) !== false;
+            } );
+        }
+        
+        // Return first 20 results
+        $results = array_slice( array_values( $google_fonts ), 0, 20 );
+        
+        wp_send_json_success( array( 'fonts' => $results ) );
+    }
+    
+    /**
+     * AJAX handler for custom font upload
+     */
+    public function ajax_upload_custom_font() {
+        // Verify nonce
+        if ( ! check_ajax_referer( 'dthree_design_system_nonce', 'nonce', false ) ) {
+            wp_die( 'Security check failed' );
+        }
+        
+        // Check permissions
+        if ( ! current_user_can( 'edit_theme_options' ) ) {
+            wp_die( 'Insufficient permissions' );
+        }
+        
+        // Check if file was uploaded
+        if ( empty( $_FILES['font_file'] ) ) {
+            wp_send_json_error( array( 'message' => 'No file uploaded' ) );
+        }
+        
+        $file = $_FILES['font_file'];
+        $font_name = isset( $_POST['font_name'] ) ? sanitize_text_field( $_POST['font_name'] ) : '';
+        
+        // Allowed font file types
+        $allowed_types = array( 'woff', 'woff2', 'ttf', 'otf', 'eot' );
+        $file_ext = pathinfo( $file['name'], PATHINFO_EXTENSION );
+        
+        if ( ! in_array( strtolower( $file_ext ), $allowed_types ) ) {
+            wp_send_json_error( array( 'message' => 'Invalid file type. Allowed: .woff, .woff2, .ttf, .otf, .eot' ) );
+        }
+        
+        // Create custom fonts directory
+        $upload_dir = wp_upload_dir();
+        $fonts_dir = $upload_dir['basedir'] . '/design-system/fonts';
+        
+        if ( ! file_exists( $fonts_dir ) ) {
+            wp_mkdir_p( $fonts_dir );
+        }
+        
+        // Generate unique filename
+        $filename = sanitize_file_name( $font_name . '.' . $file_ext );
+        $filepath = $fonts_dir . '/' . $filename;
+        
+        // Move uploaded file
+        if ( move_uploaded_file( $file['tmp_name'], $filepath ) ) {
+            $file_url = $upload_dir['baseurl'] . '/design-system/fonts/' . $filename;
+            
+            wp_send_json_success( array( 
+                'message' => 'Font uploaded successfully!',
+                'file_path' => $filepath,
+                'file_url' => $file_url,
+                'file_type' => $file_ext,
+            ) );
+        } else {
+            wp_send_json_error( array( 'message' => 'Failed to upload font file' ) );
         }
     }
 }

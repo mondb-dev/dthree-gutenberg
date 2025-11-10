@@ -715,10 +715,11 @@ if ( isset( $_POST['submit'] ) && check_admin_referer( 'dthree_design_system_sav
                                             <?php echo esc_html( ucfirst( $device ) ); ?>
                                         </label>
                                         <input type="number" 
+                                               class="scale-factor-input"
                                                id="scale_factor_<?php echo esc_attr( $device ); ?>"
                                                name="dthree_design_system[responsive_typography][scale_factor][<?php echo esc_attr( $device ); ?>]" 
                                                value="<?php echo esc_attr( $factor ); ?>" 
-                                               step="0.001"
+                                               step="0.01"
                                                min="0.5" 
                                                max="2" />
                                     </div>

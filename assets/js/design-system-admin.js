@@ -381,8 +381,59 @@
             $preview.find('h1, h2, h3, p').css('font-family', primaryFont);
         }
         
+        // Update spacing previews in real-time
+        updateSpacingPreviews();
+        
+        // Update border radius previews in real-time
+        updateBorderRadiusPreviews();
+        
+        // Update shadow previews in real-time
+        updateShadowPreviews();
+        
         // Update button previews
         updateButtonPreviews($preview);
+    }
+
+    /**
+     * Update spacing previews
+     */
+    function updateSpacingPreviews() {
+        $('[name*="[spacing][scale]"]').each(function() {
+            const value = $(this).val();
+            const $preview = $(this).siblings('.spacing-preview');
+            if ($preview.length && value) {
+                $preview.css({
+                    'width': value,
+                    'height': value
+                });
+            }
+        });
+    }
+
+    /**
+     * Update border radius previews
+     */
+    function updateBorderRadiusPreviews() {
+        $('[name*="[border_radius]"]').each(function() {
+            const value = $(this).val();
+            const $preview = $(this).siblings('.radius-preview');
+            if ($preview.length && value) {
+                $preview.css('border-radius', value);
+            }
+        });
+    }
+
+    /**
+     * Update shadow previews
+     */
+    function updateShadowPreviews() {
+        $('[name*="[shadows]"]').each(function() {
+            const value = $(this).val();
+            const $preview = $(this).siblings('.shadow-preview');
+            if ($preview.length && value) {
+                $preview.css('box-shadow', value);
+            }
+        });
     }
 
     /**

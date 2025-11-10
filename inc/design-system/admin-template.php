@@ -519,92 +519,67 @@ if ( isset( $_POST['submit'] ) && check_admin_referer( 'dthree_design_system_sav
                     <!-- Section Layouts Tab -->
                     <div class="tab-content" id="sections">
                         <div class="dthree-section">
-                            <h2><?php esc_html_e( 'Section Layout Options', 'dthree-gutenberg' ); ?></h2>
-                            <p class="description"><?php esc_html_e( 'Configure different section container types and styles for flexible page layouts.', 'dthree-gutenberg' ); ?></p>
+                            <h2><?php esc_html_e( 'Section Layout Styling', 'dthree-gutenberg' ); ?></h2>
+                            <p class="description"><?php esc_html_e( 'Customize the styling for different section container types. All section types are available in Gutenberg blocks.', 'dthree-gutenberg' ); ?></p>
                             
                             <div class="dthree-subsection">
-                                <h3><?php esc_html_e( 'Container Types', 'dthree-gutenberg' ); ?></h3>
-                                <div class="container-types-grid">
+                                <h3><?php esc_html_e( 'Container Widths', 'dthree-gutenberg' ); ?></h3>
+                                <p class="description"><?php esc_html_e( 'Define max-width values for different container types.', 'dthree-gutenberg' ); ?></p>
+                                <div class="container-width-settings">
                                     <?php foreach ( $settings['section_layouts']['container_types'] as $type_key => $container_type ) : ?>
-                                    <div class="container-type-item">
-                                        <div class="container-type-header">
-                                            <label>
-                                                <input type="radio" 
-                                                       name="dthree_design_system[section_layouts][default_container]" 
-                                                       value="<?php echo esc_attr( $type_key ); ?>"
-                                                       <?php checked( $settings['section_layouts']['default_container'] ?? 'boxed', $type_key ); ?>>
-                                                <strong><?php echo esc_html( $container_type['label'] ); ?></strong>
-                                            </label>
-                                            <p class="container-description"><?php echo esc_html( $container_type['description'] ); ?></p>
-                                        </div>
-                                        
-                                        <?php if ( $type_key === 'custom' ) : ?>
-                                        <div class="custom-container-settings">
-                                            <label><?php esc_html_e( 'Max Width', 'dthree-gutenberg' ); ?></label>
-                                            <input type="text" 
-                                                   name="dthree_design_system[section_layouts][container_types][custom][max_width]"
-                                                   value="<?php echo esc_attr( $container_type['max_width'] ); ?>"
-                                                   placeholder="1200px">
-                                            
-                                            <label><?php esc_html_e( 'Padding', 'dthree-gutenberg' ); ?></label>
-                                            <input type="text" 
-                                                   name="dthree_design_system[section_layouts][container_types][custom][padding]"
-                                                   value="<?php echo esc_attr( $container_type['padding'] ); ?>"
-                                                   placeholder="0 20px">
-                                        </div>
-                                        <?php endif; ?>
-                                        
-                                        <div class="container-preview">
-                                            <div class="preview-container <?php echo esc_attr( $container_type['css_class'] ); ?>">
-                                                <div class="preview-content">Sample Content</div>
-                                            </div>
-                                        </div>
+                                    <div class="setting-group">
+                                        <label><?php echo esc_html( $container_type['label'] ); ?></label>
+                                        <input type="text" 
+                                               name="dthree_design_system[section_layouts][container_types][<?php echo esc_attr( $type_key ); ?>][max_width]"
+                                               value="<?php echo esc_attr( $container_type['max_width'] ); ?>"
+                                               placeholder="<?php echo esc_attr( $container_type['max_width'] ); ?>">
+                                        <small class="description"><?php echo esc_html( $container_type['description'] ); ?></small>
                                     </div>
                                     <?php endforeach; ?>
                                 </div>
                             </div>
                             
                             <div class="dthree-subsection">
-                                <h3><?php esc_html_e( 'Section Styles', 'dthree-gutenberg' ); ?></h3>
-                                <div class="section-styles-grid">
+                                <h3><?php esc_html_e( 'Section Padding', 'dthree-gutenberg' ); ?></h3>
+                                <p class="description"><?php esc_html_e( 'Default padding for different section styles.', 'dthree-gutenberg' ); ?></p>
+                                <div class="section-padding-settings">
                                     <?php foreach ( $settings['section_layouts']['section_styles'] as $style_key => $section_style ) : ?>
-                                    <div class="section-style-item">
-                                        <label>
-                                            <input type="checkbox" 
-                                                   name="dthree_design_system[section_layouts][enabled_styles][]" 
-                                                   value="<?php echo esc_attr( $style_key ); ?>"
-                                                   <?php checked( in_array( $style_key, $settings['section_layouts']['enabled_styles'] ?? array_keys( $settings['section_layouts']['section_styles'] ) ) ); ?>>
-                                            <strong><?php echo esc_html( $section_style['label'] ); ?></strong>
-                                        </label>
-                                        <div class="section-style-preview dthree-section-<?php echo esc_attr( $style_key ); ?>">
-                                            <h4>Section Title</h4>
-                                            <p>This is how a section with the <?php echo esc_html( strtolower( $section_style['label'] ) ); ?> style will appear.</p>
-                                        </div>
+                                    <div class="setting-group">
+                                        <label><?php echo esc_html( $section_style['label'] ); ?></label>
+                                        <input type="text" 
+                                               name="dthree_design_system[section_layouts][section_styles][<?php echo esc_attr( $style_key ); ?>][padding]"
+                                               value="<?php echo esc_attr( $section_style['padding'] ?? 'var(--dthree-space-xl) 0' ); ?>"
+                                               placeholder="var(--dthree-space-xl) 0">
                                     </div>
                                     <?php endforeach; ?>
                                 </div>
                             </div>
                             
                             <div class="dthree-subsection">
-                                <h3><?php esc_html_e( 'Usage Examples', 'dthree-gutenberg' ); ?></h3>
+                                <h3><?php esc_html_e( 'Section Background Colors', 'dthree-gutenberg' ); ?></h3>
+                                <p class="description"><?php esc_html_e( 'Default background colors for section styles.', 'dthree-gutenberg' ); ?></p>
+                                <div class="section-bg-settings">
+                                    <?php foreach ( $settings['section_layouts']['section_styles'] as $style_key => $section_style ) : ?>
+                                    <div class="setting-group">
+                                        <label><?php echo esc_html( $section_style['label'] ); ?></label>
+                                        <input type="text" 
+                                               name="dthree_design_system[section_layouts][section_styles][<?php echo esc_attr( $style_key ); ?>][background]"
+                                               value="<?php echo esc_attr( $section_style['background'] ?? 'transparent' ); ?>"
+                                               class="color-picker">
+                                    </div>
+                                    <?php endforeach; ?>
+                                </div>
+                            </div>
+                            
+                            <div class="dthree-subsection">
+                                <h3><?php esc_html_e( 'Usage in Gutenberg', 'dthree-gutenberg' ); ?></h3>
+                                <p class="description"><?php esc_html_e( 'All section layout types are available as custom block variations. Use them in the block editor by selecting the Group block and choosing a section layout variation.', 'dthree-gutenberg' ); ?></p>
                                 <div class="usage-examples">
                                     <div class="code-example">
-                                        <h4><?php esc_html_e( 'HTML Usage', 'dthree-gutenberg' ); ?></h4>
-                                        <pre><code>&lt;section class="dthree-section-boxed dthree-section-padded"&gt;
-    &lt;div class="dthree-container"&gt;
-        &lt;h2&gt;Section Title&lt;/h2&gt;
-        &lt;p&gt;Section content here...&lt;/p&gt;
-    &lt;/div&gt;
-&lt;/section&gt;</code></pre>
-                                    </div>
-                                    
-                                    <div class="code-example">
-                                        <h4><?php esc_html_e( 'WordPress Block Usage', 'dthree-gutenberg' ); ?></h4>
-                                        <pre><code>&lt;!-- wp:group {"className":"dthree-section-full-width dthree-section-hero"} --&gt;
-&lt;div class="wp-block-group dthree-section-full-width dthree-section-hero"&gt;
-    &lt;!-- wp:heading --&gt;
-    &lt;h2&gt;Hero Section&lt;/h2&gt;
-    &lt;!-- /wp:heading --&gt;
+                                        <h4><?php esc_html_e( 'Example: Boxed Section', 'dthree-gutenberg' ); ?></h4>
+                                        <pre><code>&lt;!-- wp:group {"className":"dthree-section-boxed dthree-section-padded"} --&gt;
+&lt;div class="wp-block-group dthree-section-boxed dthree-section-padded"&gt;
+    &lt;!-- Content here --&gt;
 &lt;/div&gt;
 &lt;!-- /wp:group --&gt;</code></pre>
                                     </div>
@@ -616,141 +591,11 @@ if ( isset( $_POST['submit'] ) && check_admin_referer( 'dthree_design_system_sav
                     <!-- Menu Builder Tab -->
                     <div class="tab-content" id="menus">
                         <div class="dthree-section">
-                            <h2><?php esc_html_e( 'Menu Builder & Styles', 'dthree-gutenberg' ); ?></h2>
-                            <p class="description"><?php esc_html_e( 'Create advanced menu layouts including mega menus, dropdown styles, and mobile navigation.', 'dthree-gutenberg' ); ?></p>
+                            <h2><?php esc_html_e( 'Menu Styling', 'dthree-gutenberg' ); ?></h2>
+                            <p class="description"><?php esc_html_e( 'Customize typography, colors, and spacing for navigation menus. All menu layouts are available in your theme.', 'dthree-gutenberg' ); ?></p>
                             
                             <div class="dthree-subsection">
-                                <h3><?php esc_html_e( 'Menu Layout Styles', 'dthree-gutenberg' ); ?></h3>
-                                <div class="menu-styles-grid">
-                                    <?php foreach ( $settings['menu_builder']['menu_styles'] as $menu_key => $menu_style ) : ?>
-                                    <div class="menu-style-item">
-                                        <label>
-                                            <input type="radio" 
-                                                   name="dthree_design_system[menu_builder][default_style]" 
-                                                   value="<?php echo esc_attr( $menu_key ); ?>"
-                                                   <?php checked( $settings['menu_builder']['default_style'] ?? 'horizontal', $menu_key ); ?>>
-                                            <strong><?php echo esc_html( $menu_style['label'] ); ?></strong>
-                                        </label>
-                                        <p class="menu-description"><?php echo esc_html( $menu_style['description'] ); ?></p>
-                                        
-                                        <div class="menu-preview <?php echo esc_attr( $menu_style['css_class'] ); ?>">
-                                            <?php if ( $menu_key === 'mega' ) : ?>
-                                                <div class="menu-item has-dropdown">
-                                                    <span>Products</span>
-                                                    <div class="mega-dropdown">
-                                                        <div class="mega-column">
-                                                            <h5>Category 1</h5>
-                                                            <a href="#">Item 1</a>
-                                                            <a href="#">Item 2</a>
-                                                        </div>
-                                                        <div class="mega-column">
-                                                            <h5>Category 2</h5>
-                                                            <a href="#">Item 3</a>
-                                                            <a href="#">Item 4</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            <?php elseif ( $menu_key === 'split' ) : ?>
-                                                <div class="menu-left">
-                                                    <span class="menu-item">Home</span>
-                                                    <span class="menu-item">About</span>
-                                                </div>
-                                                <div class="menu-logo">LOGO</div>
-                                                <div class="menu-right">
-                                                    <span class="menu-item">Services</span>
-                                                    <span class="menu-item">Contact</span>
-                                                </div>
-                                            <?php else : ?>
-                                                <span class="menu-item">Home</span>
-                                                <span class="menu-item">About</span>
-                                                <span class="menu-item">Services</span>
-                                                <span class="menu-item">Contact</span>
-                                            <?php endif; ?>
-                                        </div>
-                                    </div>
-                                    <?php endforeach; ?>
-                                </div>
-                            </div>
-                            
-                            <div class="dthree-subsection">
-                                <h3><?php esc_html_e( 'Dropdown Styles', 'dthree-gutenberg' ); ?></h3>
-                                <div class="dropdown-styles-grid">
-                                    <?php foreach ( $settings['menu_builder']['dropdown_styles'] as $dropdown_key => $dropdown_style ) : ?>
-                                    <div class="dropdown-style-item">
-                                        <label>
-                                            <input type="radio" 
-                                                   name="dthree_design_system[menu_builder][default_dropdown]" 
-                                                   value="<?php echo esc_attr( $dropdown_key ); ?>"
-                                                   <?php checked( $settings['menu_builder']['default_dropdown'] ?? 'simple', $dropdown_key ); ?>>
-                                            <strong><?php echo esc_html( $dropdown_style['label'] ); ?></strong>
-                                        </label>
-                                        
-                                        <div class="dropdown-preview">
-                                            <div class="dropdown-trigger">Services ↓</div>
-                                            <div class="dropdown-menu dropdown-<?php echo esc_attr( $dropdown_key ); ?>">
-                                                <a href="#" class="dropdown-item">Web Design</a>
-                                                <a href="#" class="dropdown-item">Development</a>
-                                                <a href="#" class="dropdown-item">Consulting</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <?php endforeach; ?>
-                                </div>
-                            </div>
-                            
-                            <div class="dthree-subsection">
-                                <h3><?php esc_html_e( 'Mobile Menu Settings', 'dthree-gutenberg' ); ?></h3>
-                                <div class="mobile-menu-settings">
-                                    <div class="setting-group">
-                                        <label><?php esc_html_e( 'Mobile Menu Style', 'dthree-gutenberg' ); ?></label>
-                                        <select name="dthree_design_system[menu_builder][mobile_menu][style]">
-                                            <option value="slide_in" <?php selected( $settings['menu_builder']['mobile_menu']['style'] ?? 'slide_in', 'slide_in' ); ?>><?php esc_html_e( 'Slide In', 'dthree-gutenberg' ); ?></option>
-                                            <option value="overlay" <?php selected( $settings['menu_builder']['mobile_menu']['style'], 'overlay' ); ?>><?php esc_html_e( 'Overlay', 'dthree-gutenberg' ); ?></option>
-                                            <option value="push" <?php selected( $settings['menu_builder']['mobile_menu']['style'], 'push' ); ?>><?php esc_html_e( 'Push Content', 'dthree-gutenberg' ); ?></option>
-                                        </select>
-                                    </div>
-                                    
-                                    <div class="setting-group">
-                                        <label><?php esc_html_e( 'Menu Position', 'dthree-gutenberg' ); ?></label>
-                                        <select name="dthree_design_system[menu_builder][mobile_menu][position]">
-                                            <option value="left" <?php selected( $settings['menu_builder']['mobile_menu']['position'] ?? 'left', 'left' ); ?>><?php esc_html_e( 'Left Side', 'dthree-gutenberg' ); ?></option>
-                                            <option value="right" <?php selected( $settings['menu_builder']['mobile_menu']['position'], 'right' ); ?>><?php esc_html_e( 'Right Side', 'dthree-gutenberg' ); ?></option>
-                                            <option value="top" <?php selected( $settings['menu_builder']['mobile_menu']['position'], 'top' ); ?>><?php esc_html_e( 'Top', 'dthree-gutenberg' ); ?></option>
-                                        </select>
-                                    </div>
-                                    
-                                    <div class="setting-group">
-                                        <label><?php esc_html_e( 'Hamburger Style', 'dthree-gutenberg' ); ?></label>
-                                        <select name="dthree_design_system[menu_builder][mobile_menu][hamburger_style]">
-                                            <option value="lines" <?php selected( $settings['menu_builder']['mobile_menu']['hamburger_style'] ?? 'lines', 'lines' ); ?>><?php esc_html_e( 'Three Lines', 'dthree-gutenberg' ); ?></option>
-                                            <option value="dots" <?php selected( $settings['menu_builder']['mobile_menu']['hamburger_style'], 'dots' ); ?>><?php esc_html_e( 'Three Dots', 'dthree-gutenberg' ); ?></option>
-                                            <option value="arrow" <?php selected( $settings['menu_builder']['mobile_menu']['hamburger_style'], 'arrow' ); ?>><?php esc_html_e( 'Arrow', 'dthree-gutenberg' ); ?></option>
-                                        </select>
-                                    </div>
-                                    
-                                    <div class="mobile-menu-preview">
-                                        <div class="mobile-preview-device">
-                                            <div class="mobile-header">
-                                                <span class="mobile-logo">LOGO</span>
-                                                <div class="hamburger-menu hamburger-<?php echo esc_attr( $settings['menu_builder']['mobile_menu']['hamburger_style'] ?? 'lines' ); ?>">
-                                                    <span></span>
-                                                    <span></span>
-                                                    <span></span>
-                                                </div>
-                                            </div>
-                                            <div class="mobile-menu mobile-menu-<?php echo esc_attr( $settings['menu_builder']['mobile_menu']['position'] ?? 'left' ); ?>">
-                                                <a href="#" class="mobile-menu-item">Home</a>
-                                                <a href="#" class="mobile-menu-item">About</a>
-                                                <a href="#" class="mobile-menu-item">Services</a>
-                                                <a href="#" class="mobile-menu-item">Contact</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="dthree-subsection">
-                                <h3><?php esc_html_e( 'Menu Typography & Styling', 'dthree-gutenberg' ); ?></h3>
+                                <h3><?php esc_html_e( 'Menu Typography', 'dthree-gutenberg' ); ?></h3>
                                 <div class="menu-typography-settings">
                                     <div class="setting-row">
                                         <div class="setting-group">
@@ -781,48 +626,109 @@ if ( isset( $_POST['submit'] ) && check_admin_referer( 'dthree_design_system_sav
                                                 <option value="capitalize" <?php selected( $settings['menu_builder']['typography']['text_transform'], 'capitalize' ); ?>><?php esc_html_e( 'Capitalize', 'dthree-gutenberg' ); ?></option>
                                             </select>
                                         </div>
+                                        
+                                        <div class="setting-group">
+                                            <label><?php esc_html_e( 'Letter Spacing', 'dthree-gutenberg' ); ?></label>
+                                            <input type="text" 
+                                                   name="dthree_design_system[menu_builder][typography][letter_spacing]"
+                                                   value="<?php echo esc_attr( $settings['menu_builder']['typography']['letter_spacing'] ?? '0' ); ?>"
+                                                   placeholder="0">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             
                             <div class="dthree-subsection">
-                                <h3><?php esc_html_e( 'Usage Examples', 'dthree-gutenberg' ); ?></h3>
-                                <div class="usage-examples">
-                                    <div class="code-example">
-                                        <h4><?php esc_html_e( 'Basic Menu HTML', 'dthree-gutenberg' ); ?></h4>
-                                        <pre><code>&lt;nav class="dthree-menu-horizontal"&gt;
-    &lt;a href="#" class="menu-item"&gt;Home&lt;/a&gt;
-    &lt;a href="#" class="menu-item has-dropdown"&gt;
-        Services
-        &lt;div class="dropdown-menu"&gt;
-            &lt;a href="#" class="dropdown-item"&gt;Web Design&lt;/a&gt;
-            &lt;a href="#" class="dropdown-item"&gt;Development&lt;/a&gt;
-        &lt;/div&gt;
-    &lt;/a&gt;
-&lt;/nav&gt;</code></pre>
+                                <h3><?php esc_html_e( 'Menu Colors', 'dthree-gutenberg' ); ?></h3>
+                                <div class="menu-color-settings">
+                                    <div class="setting-group">
+                                        <label><?php esc_html_e( 'Link Color', 'dthree-gutenberg' ); ?></label>
+                                        <input type="text" 
+                                               name="dthree_design_system[menu_builder][colors][link_color]"
+                                               value="<?php echo esc_attr( $settings['menu_builder']['colors']['link_color'] ?? 'var(--dthree-color-dark)' ); ?>"
+                                               class="color-picker">
                                     </div>
                                     
-                                    <div class="code-example">
-                                        <h4><?php esc_html_e( 'Mega Menu HTML', 'dthree-gutenberg' ); ?></h4>
-                                        <pre><code>&lt;nav class="dthree-menu-mega"&gt;
-    &lt;a href="#" class="menu-item has-mega"&gt;
-        Products
-        &lt;div class="mega-dropdown"&gt;
-            &lt;div class="mega-column"&gt;
-                &lt;h5&gt;Web Services&lt;/h5&gt;
-                &lt;a href="#"&gt;Design&lt;/a&gt;
-                &lt;a href="#"&gt;Development&lt;/a&gt;
-            &lt;/div&gt;
-            &lt;div class="mega-column"&gt;
-                &lt;h5&gt;Marketing&lt;/h5&gt;
-                &lt;a href="#"&gt;SEO&lt;/a&gt;
-                &lt;a href="#"&gt;Social Media&lt;/a&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-    &lt;/a&gt;
-&lt;/nav&gt;</code></pre>
+                                    <div class="setting-group">
+                                        <label><?php esc_html_e( 'Link Hover Color', 'dthree-gutenberg' ); ?></label>
+                                        <input type="text" 
+                                               name="dthree_design_system[menu_builder][colors][link_hover_color]"
+                                               value="<?php echo esc_attr( $settings['menu_builder']['colors']['link_hover_color'] ?? 'var(--dthree-color-primary)' ); ?>"
+                                               class="color-picker">
+                                    </div>
+                                    
+                                    <div class="setting-group">
+                                        <label><?php esc_html_e( 'Active Link Color', 'dthree-gutenberg' ); ?></label>
+                                        <input type="text" 
+                                               name="dthree_design_system[menu_builder][colors][link_active_color]"
+                                               value="<?php echo esc_attr( $settings['menu_builder']['colors']['link_active_color'] ?? 'var(--dthree-color-primary)' ); ?>"
+                                               class="color-picker">
+                                    </div>
+                                    
+                                    <div class="setting-group">
+                                        <label><?php esc_html_e( 'Dropdown Background', 'dthree-gutenberg' ); ?></label>
+                                        <input type="text" 
+                                               name="dthree_design_system[menu_builder][colors][dropdown_bg]"
+                                               value="<?php echo esc_attr( $settings['menu_builder']['colors']['dropdown_bg'] ?? '#ffffff' ); ?>"
+                                               class="color-picker">
                                     </div>
                                 </div>
+                            </div>
+                            
+                            <div class="dthree-subsection">
+                                <h3><?php esc_html_e( 'Menu Spacing', 'dthree-gutenberg' ); ?></h3>
+                                <div class="menu-spacing-settings">
+                                    <div class="setting-group">
+                                        <label><?php esc_html_e( 'Item Spacing', 'dthree-gutenberg' ); ?></label>
+                                        <input type="text" 
+                                               name="dthree_design_system[menu_builder][spacing][item_spacing]"
+                                               value="<?php echo esc_attr( $settings['menu_builder']['spacing']['item_spacing'] ?? 'var(--dthree-space-md)' ); ?>"
+                                               placeholder="var(--dthree-space-md)">
+                                    </div>
+                                    
+                                    <div class="setting-group">
+                                        <label><?php esc_html_e( 'Dropdown Padding', 'dthree-gutenberg' ); ?></label>
+                                        <input type="text" 
+                                               name="dthree_design_system[menu_builder][spacing][dropdown_padding]"
+                                               value="<?php echo esc_attr( $settings['menu_builder']['spacing']['dropdown_padding'] ?? 'var(--dthree-space-sm)' ); ?>"
+                                               placeholder="var(--dthree-space-sm)">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="dthree-subsection">
+                                <h3><?php esc_html_e( 'Mobile Menu Settings', 'dthree-gutenberg' ); ?></h3>
+                                <div class="mobile-menu-settings">
+                                    <div class="setting-group">
+                                        <label><?php esc_html_e( 'Breakpoint', 'dthree-gutenberg' ); ?></label>
+                                        <input type="text" 
+                                               name="dthree_design_system[menu_builder][mobile_menu][breakpoint]"
+                                               value="<?php echo esc_attr( $settings['menu_builder']['mobile_menu']['breakpoint'] ?? 'var(--dthree-breakpoint-md)' ); ?>"
+                                               placeholder="768px">
+                                        <small class="description"><?php esc_html_e( 'Screen width below which mobile menu is shown', 'dthree-gutenberg' ); ?></small>
+                                    </div>
+                                    
+                                    <div class="setting-group">
+                                        <label><?php esc_html_e( 'Hamburger Color', 'dthree-gutenberg' ); ?></label>
+                                        <input type="text" 
+                                               name="dthree_design_system[menu_builder][mobile_menu][hamburger_color]"
+                                               value="<?php echo esc_attr( $settings['menu_builder']['mobile_menu']['hamburger_color'] ?? 'var(--dthree-color-dark)' ); ?>"
+                                               class="color-picker">
+                                    </div>
+                                    
+                                    <div class="setting-group">
+                                        <label><?php esc_html_e( 'Mobile Menu Background', 'dthree-gutenberg' ); ?></label>
+                                        <input type="text" 
+                                               name="dthree_design_system[menu_builder][mobile_menu][background]"
+                                               value="<?php echo esc_attr( $settings['menu_builder']['mobile_menu']['background'] ?? '#ffffff' ); ?>"
+                                               class="color-picker">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="dthree-subsection">
+                                <h3><?php esc_html_e( 'Available Menu Types', 'dthree-gutenberg' ); ?></h3>
+                                <p class="description"><?php esc_html_e( 'All menu layouts (horizontal, vertical, mega, split) are available in your theme. Use the WordPress menu system or custom navigation blocks to implement them.', 'dthree-gutenberg' ); ?></p>
                             </div>
                         </div>
                     </div>
